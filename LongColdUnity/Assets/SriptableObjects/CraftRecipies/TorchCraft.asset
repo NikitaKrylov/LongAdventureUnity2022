@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bee6194794d5c1b4ca0205f5d3fdf1bb, type: 3}
+  m_Name: TorchCraft
+  m_EditorClassIdentifier: 
+  craftableItem: {fileID: 11400000, guid: 622cf3ed4fb19aa44a29dcdf198df6c2, type: 2}
+  necessaryItems:
+  - necessaryItem: {fileID: 11400000, guid: 8cdf65d966007d84790613c46b1d918b, type: 2}
+    neededAmount: 1
+  - necessaryItem: {fileID: 11400000, guid: 5eeab770e1ae04a48bb76404dccfedc3, type: 2}
+    neededAmount: 1
