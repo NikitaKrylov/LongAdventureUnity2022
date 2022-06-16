@@ -135,6 +135,14 @@ public class Item
     public AbstractItem currentItem;
     public int count;
     public Inventory Container  = null;
+
+    public Item(AbstractItem item, int count, Inventory container)
+    {
+        currentItem = item;
+        this.count = count;
+        Container = container;
+        Container?.AddItem(this);
+    }
     public void Remove(int amount)
     {
         Container?.RemoveItem(this, amount);

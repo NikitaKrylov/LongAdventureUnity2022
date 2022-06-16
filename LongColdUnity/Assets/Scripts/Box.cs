@@ -5,7 +5,6 @@ using UnityEngine;
 public class Box : MonoBehaviour
 {
     [SerializeField] private Container container;
-    [SerializeField] private GameObject inventoryObject;
 
 
     public void Open()

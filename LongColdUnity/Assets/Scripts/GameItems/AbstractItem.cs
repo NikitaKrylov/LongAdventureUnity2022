@@ -36,9 +36,7 @@ public abstract class AbstractItem : ScriptableObject
     }
     public Item CreateItem(int amount)
     {
-        Item newItem = new Item();
-        newItem.currentItem = this;
-        newItem.count = amount;
+        Item newItem = new Item(this, amount, null);
         return newItem; 
     }
 }

@@ -38,11 +38,9 @@ public class MainItemObject : MonoBehaviour, IPointerClickHandler, IPointerEnter
     public void Take()
     {
         PlayerInventory inv = PlayerInventory.GetInstance();
+        GameObject.FindGameObjectWithTag("Player")?.GetComponent<AnimationController>()?.PlayTakeAnimation();
 
-        Item item = new Item();
-        item.currentItem = objectModel;
-        item.count = 1;
-        inv.AddItem(item);
+        Item item = new Item(objectModel, 1, inv);
         Destroy(gameObject);
     }
 
