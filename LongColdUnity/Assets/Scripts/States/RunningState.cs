@@ -6,7 +6,7 @@ public class RunningState : IState
     private Rigidbody2D _rb;
     private AnimationController animationController;
     private GameObject gameObject;
-    public float speed = 5f;
+    public static float speed = 5f;
 
     public RunningState(GameObject obj)
     {
@@ -18,6 +18,14 @@ public class RunningState : IState
         if (Mathf.Abs(Input.GetAxis("Horizontal")) < .3)
         {
             return new StandingState(obj);
+        }
+        else if (Input.GetKey(KeyCode.LeftShift))
+        {
+            return new ShiftingState(obj);
+        }
+        else if (FallingState.isFalling(obj))
+        {
+            return new FallingState(obj);
         }
         return null;
     }

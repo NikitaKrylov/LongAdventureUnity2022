@@ -1,19 +1,20 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class SleepingState : IState
+public class ShiftingState : IState
 {
-    private bool canSkip = true;
-    private GameObject gameObject;
     private AnimationController animationController;
+    private GameObject gameObject;
 
-    public SleepingState(GameObject obj)
+    public ShiftingState(GameObject obj)
     {
         OnEnter(obj);
     }
+
     public IState handleInput(GameObject obj)
     {
-        if (!canSkip) return null;
-        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.U))
+        if (!Input.GetKey(KeyCode.LeftShift))
         {
             return new StandingState(obj);
         }
@@ -24,12 +25,15 @@ public class SleepingState : IState
     {
         gameObject = obj;
         animationController = gameObject.GetComponent<AnimationController>();
-
-        animationController.PlaySleepingAnimation();
+        animationController.StartShiftingAnimation();
     }
+
     public void OnExit()
     {
-        animationController.StopSleepingAnimation();
+        animationController.StopShiftingAnimation();
     }
-    public void Update(){}
+
+    public void Update()
+    {
+    }
 }

@@ -12,6 +12,14 @@ public class StandingState : IState
         {
             return new SleepingState(obj);
         }
+        else if (Input.GetKey(KeyCode.LeftShift))
+        {
+            return new ShiftingState(obj);
+        }
+        else if (FallingState.isFalling(obj))
+        {
+            return new FallingState(obj);
+        }
         return null;
     }
 

@@ -49,8 +49,18 @@ public class AnimationController : MonoBehaviour
             Mathf.Abs(transform.localScale.z) * newDirection.z
             );
     }
+    public void StartFallingAnimation() => _animator.SetBool("isFalling", true);
+    public void StopFallingAnimation() => _animator.SetBool("isFalling", false);
+
+    public void StartShiftingAnimation() => _animator.SetBool("isShifting", true);
+    public void StopShiftingAnimation() => _animator.SetBool("isShifting", false);
+
+    public void StartClimbingAnimation() => _animator.SetBool("isClimbing", true);
+    public void StopClimbingAnimation() => _animator.SetBool("isClimbing", false);
+
     public void PlayTakeAnimation() => _animator.SetTrigger("Take");   
     public void StartRunAnimation() => _animator.SetBool("IsRunning", true);
+
     public void StopRunAnimation() => _animator.SetBool("IsRunning", false);
     public void PlaySleepingAnimation()
     {
