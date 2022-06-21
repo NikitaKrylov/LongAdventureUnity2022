@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class CraftSystem : MonoBehaviour
@@ -33,17 +34,15 @@ public class CraftSystem : MonoBehaviour
         for (int i = 0; i < craftRecipies.Count; i++)
         {
             CraftRecipe craftRecipe = craftRecipies[i];
-            //Craft(craftRecipe);
             GameObject recipeObject = Instantiate(recipeItem, craftViewList.transform);
-            recipeObject.GetComponentInChildren<Button>().onClick.AddListener(delegate{
-                if (craftRecipeStatView.IsActive) craftRecipeStatView.Close();
-                else craftRecipeStatView.Show(craftRecipe);
-            });
             CraftItemPanel craftItemPanel = recipeObject.GetComponent<CraftItemPanel>();
 
-            craftItemPanel.craftRecipe = craftRecipe;
-            craftItemPanel.SetName(craftRecipe.Name);
-            craftItemPanel.SetImage(craftRecipe.Image);
+            recipeObject.GetComponentInChildren<Button>().onClick.AddListener(delegate{
+                craftRecipeStatView.Show(craftRecipe);
+                //if (craftRecipeStatView.IsActive) craftRecipeStatView.Close();
+                //else craftRecipeStatView.Show(craftRecipe);
+            });
+            craftItemPanel.SetData(craftRecipe);
             _craftItemPanels.Add(craftItemPanel);
         }
     }
@@ -78,4 +77,5 @@ public class CraftSystem : MonoBehaviour
         UpdateCraftRecipeItems();
     }
 
+    
 }

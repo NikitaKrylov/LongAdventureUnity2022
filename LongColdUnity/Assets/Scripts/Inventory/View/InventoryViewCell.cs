@@ -20,6 +20,8 @@ public class InventoryViewCell : MonoBehaviour, IBeginDragHandler, IDragHandler,
     public Transform _originParent;
     public Transform _draggingParent;
     public UnityAction<InventoryViewCell> OnClickAction;
+    public InventoryViewer inventoryViewer;
+
     private CanvasGroup _canvasGroup;
 
     [SerializeField] private Text countText;

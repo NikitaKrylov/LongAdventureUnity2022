@@ -1,10 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
-public class LightSource : Equipment
+[CreateAssetMenu(fileName = "ScriptableObjects", menuName = "ScriptableObjects/Equipment/LightSource")]
+public class LightSource : Instrument
 {
-    public float lightStrenght;
-    public float radius;
-    public bool needFuil;
+    public bool canTurnOff;
+    public Light2D.LightType lightType;
+    public Color color;
+    public float intensity;
+    public float pointLightInnerRadius;
+    public float pointLightOuterRadius;
+    public float pointLightInnerAngle;
+    public float pointLightOuterAngle;
+    public float zRotation = 0;
 }

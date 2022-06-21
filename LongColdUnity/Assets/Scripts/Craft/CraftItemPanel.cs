@@ -14,6 +14,12 @@ public class CraftItemPanel : MonoBehaviour
     [SerializeField] private Color32 availableColor;
     [SerializeField] private Color32 unavailableColor;
 
+    public void SetData(CraftRecipe recipe)
+    {
+        craftRecipe = recipe;
+        SetImage(recipe.craftableItem.image);
+        SetName(recipe.craftableItem.name);
+    }
 
     public void SetImage(Sprite image)
     {

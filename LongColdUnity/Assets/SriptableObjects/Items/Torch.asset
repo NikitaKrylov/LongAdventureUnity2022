@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Torch
   description: Simple source of light
-  image: {fileID: 21300000, guid: 4832ee3322149e144a5e0ae6fcf6c072, type: 3}
+  image: {fileID: -2105823510, guid: 082bdc457e4e2d742b672d75f1b3b0e5, type: 3}
   scale: {x: 1.45, y: 1.45, z: 1.45}
   category: 4
   prefab: {fileID: 5632101830399947250, guid: 5cd89a34172a0aa4583bd006f600768d, type: 3}

@@ -8,6 +8,7 @@ using UnityEngine.Events;
 
 public class InventoryViewer : MonoBehaviour
 {
+    [SerializeField] private Text inventoryWeight;
 
     public List<InventoryViewCell> viewItems = new List<InventoryViewCell>();
     [Tooltip("Объект ячейки с предметом")] public GameObject gameObjectShow;
@@ -18,7 +19,15 @@ public class InventoryViewer : MonoBehaviour
 
     public InventoryViewCell currentItem = null;
 
+    private void Update()
+    {
+        SetInventoryWeight();
+    }
 
+    public void SetInventoryWeight()
+    {
+        inventoryWeight.text = $"{PlayerInventory.GetInstance().GetWeight() / 1000} кг";
+    }
 
     public void UpdateInventory()
     {
@@ -35,7 +44,7 @@ public class InventoryViewer : MonoBehaviour
         return viewItem ?? null;
     }
 
-    
+
 
     public void UpdateItem(InventoryViewCell viewItem)
     {
@@ -50,6 +59,7 @@ public class InventoryViewer : MonoBehaviour
         GameObject newItem = Instantiate(gameObjectShow, InventoryMainObject.transform);
         InventoryViewCell ivc = newItem.GetComponent<InventoryViewCell>();
 
+        ivc.inventoryViewer = this;
         ivc.ii = item;
         ivc.OnClickAction += ShowItemRepresentation;
         ivc._draggingParent = _draggingCellParent;
@@ -62,13 +72,14 @@ public class InventoryViewer : MonoBehaviour
         newItem.GetComponentInChildren<RectTransform>().localScale = new Vector3(1, 1, 1);
         
         viewItems.Add(ivc);
-        
+
     }
 
     public void UpdateViewItem(Item item)
     {
         InventoryViewCell viewItem = viewItems.Find(x => x.ii.currentItem.id == item.currentItem.id);
         viewItem?.UpdateCell();
+
     }
 
     public void PopViewItem(Item item) 

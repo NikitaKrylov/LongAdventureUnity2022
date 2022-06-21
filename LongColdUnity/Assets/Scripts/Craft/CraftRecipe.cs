@@ -6,6 +6,7 @@ using UnityEngine;
 public class CraftRecipe : ScriptableObject
 {
     public AbstractItem craftableItem;
+    public int exitAmount = 1;
 
     public List<CraftRecipeItem> necessaryItems = new List<CraftRecipeItem>();
     public string Name { get { return craftableItem.name; } }

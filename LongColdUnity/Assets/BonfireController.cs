@@ -1,66 +1,102 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
 using System;
 
 public class BonfireController : MonoBehaviour
 {
-    [SerializeField] private List<ParticleSystemElement> particleSystems = new List<ParticleSystemElement>();
-    [SerializeField] private new UnityEngine.Rendering.Universal.Light2D light;
-    [SerializeField] private float lightFadeValue = 0f;
-    [SerializeField] private bool isFadingParticle = true;
-    [SerializeField] private bool isFadingLight = true;
-    [SerializeField] private bool useParticleSystem = true;
+    [SerializeField, Tooltip("Добовляются автоматически из дочерних объектов")] private ParticleSystemElement[] particleSystemElements;
+    [SerializeField, Tooltip("Общее время работы")] private float workingTime;
+    [SerializeField, Tooltip("Порог времени, после которого системы частиц будут изменяться")] private float workingTimeThreshold;
+    [SerializeField, Tooltip("Режим работы")] private BonfireWorkType bonfireWorkType = BonfireWorkType.Fade;
+    [SerializeField] private float combustionEfficiencyPersent;
+
+    private float CE { get { return combustionEfficiencyPersent / 100; } }
+
+
+
+    public enum BonfireWorkType { Stay, Fade }
+
+    private void Start()
+    {
+        ParticleSystem[] particleSystems = GetComponentsInChildren<ParticleSystem>();
+        particleSystemElements = new ParticleSystemElement[particleSystems.Length];
+
+        for (int i = 0; i < particleSystems.Length; i++)
+        {
+            var pse = new ParticleSystemElement(particleSystems[i], workingTimeThreshold);
+            particleSystemElements.SetValue(pse, i);
+        }
+
+    }
 
     private void Update()
     {
-        FadeAway();
-    }
+        if (bonfireWorkType == BonfireWorkType.Stay) return;
 
-    public virtual void FadeAway()
-    {
-        if (isFadingParticle) { FadeParticleSystem(); }
-        if (isFadingLight) { FadeLight(); }
-        
-    }
+        workingTime -= Time.deltaTime;
 
-    public void FadeParticleSystem()
-    {
-        if (!useParticleSystem || particleSystems.Count <= 0) return;
-
-        foreach (ParticleSystemElement p in particleSystems)
+        foreach (var pse in particleSystemElements)
         {
-            p.Fade();
+            pse.Update(workingTime);
         }
     }
-    public void FadeLight()
-    {
-        if (light == null) return;
 
-        light.intensity -= lightFadeValue * Time.deltaTime;
+    public void UpdateWorkTime(float fuelValue)
+    {
+        workingTime += fuelValue * CE;
+        // ...
     }
+
+    public void OpenBonfireMenu()
+    {
+        UIManager.Instance.bonfireComponent.Show();
+        BonfireMenu.Instance.SetController(this);
+    }
+
+    public int GetWorkTime()
+    {
+        return (int)workingTime;
+    }
+
 
     [Serializable]
     private class ParticleSystemElement
     {
         public ParticleSystem particleSystem;
-        public float fadeRate = 0f;
+        public float defaultRateOverTime;
+        public float currentRateOverTime;
+        public bool useWarkingTime = true;
+        public readonly float workingTimeThreshold;
+        public bool isChanging = true;
+
+        private float fadeSpeed;
+
+        public ParticleSystemElement(ParticleSystem particleSystem,  float workingTimeThreshold)
+        {
+            this.particleSystem = particleSystem;
+            this.workingTimeThreshold = workingTimeThreshold;
+
+            var emmision = this.particleSystem.emission;
+            defaultRateOverTime = emmision.rateOverTime.constant;
+            currentRateOverTime = defaultRateOverTime;
+            fadeSpeed = defaultRateOverTime / workingTimeThreshold;
+        }
+
+        public void Update(float workingTime)
+        {
+            if (workingTime - workingTimeThreshold <= 0) Fade();
+        }
 
         public void Fade()
         {
-            var emision = particleSystem.emission;
-            var emisionRate = emision.rateOverTime.constant - fadeRate * Time.deltaTime;
+            var emmision = particleSystem.emission;
 
-            if (emisionRate >= 0f)
-            {
-                emision.rateOverTime = emisionRate;
-            }
-            else
-            {
-                emision.rateOverTime = 0f;
-            }
+            if (currentRateOverTime - fadeSpeed * Time.deltaTime <= 0) return;
+
+            currentRateOverTime -= fadeSpeed * Time.deltaTime;
+            emmision.rateOverTime = currentRateOverTime;
         }
+
+        
     }
 
 }

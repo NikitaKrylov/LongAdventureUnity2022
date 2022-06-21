@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee53ec383f19773469746be0fc3238e9, type: 3}
+  m_Name: CampLight
+  m_EditorClassIdentifier: 
+  name: Camp light
+  description: Camp light
+  image: {fileID: -283227345, guid: 082bdc457e4e2d742b672d75f1b3b0e5, type: 3}
+  scale: {x: 0.57, y: 0.57, z: 0.57}
+  category: 4
+  prefab: {fileID: 5632101830399947250, guid: 0dd9375257bbacf41aea4849bcff084a, type: 3}
+  weight: 1000
+  craftable: 0
+  unique: 0
+  durabilityPoints: 1000
+  canTurnOff: 1
+  lightType: 3
+  color: {r: 1, g: 0.86032784, b: 0.34591186, a: 1}
+  intensity: 1
+  pointLightInnerRadius: 0.87
+  pointLightOuterRadius: 3.8
+  pointLightInnerAngle: 360
+  pointLightOuterAngle: 360
+  zRotation: 0

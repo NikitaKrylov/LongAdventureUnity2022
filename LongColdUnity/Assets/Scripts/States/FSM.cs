@@ -3,6 +3,7 @@ using UnityEngine;
 public class FSM : MonoBehaviour
 {
     public IState currentState;
+    public IState instrumentSlotState = null;
     void Start()
     {
         currentState = new StandingState(gameObject);

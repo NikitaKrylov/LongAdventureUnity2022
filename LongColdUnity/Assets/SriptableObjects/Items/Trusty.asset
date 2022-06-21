@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Trusty
   description: Trusty
-  image: {fileID: 21300000, guid: 87a4a9909955c1d42adf3cc81422d426, type: 3}
+  image: {fileID: -1269363316, guid: 082bdc457e4e2d742b672d75f1b3b0e5, type: 3}
   scale: {x: 0.4, y: 0.4, z: 0.4}
   category: 2
   prefab: {fileID: 5632101830399947250, guid: 5cd89a34172a0aa4583bd006f600768d, type: 3}

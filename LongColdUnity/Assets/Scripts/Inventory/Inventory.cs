@@ -22,6 +22,17 @@ public class Inventory : MonoBehaviour
         items.ForEach(item => OnAddItem.Invoke(item));
     }
 
+    public float GetWeight()
+    {
+        float weight = 0f;
+
+        foreach (Item item in items)
+        {
+            weight += item.count * item.currentItem.weight;
+        }
+        return weight;
+    }
+
     public void AddItem(Item item)
     {
         if (HasItem(item))

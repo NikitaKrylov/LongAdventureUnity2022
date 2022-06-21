@@ -6,19 +6,19 @@ using UnityEngine.EventSystems;
 
 
 [ExecuteInEditMode]
-public class MainItemObject : MonoBehaviour, IPointerClickHandler, IPointerEnterHandler, IPointerExitHandler
+public class MainItemObject: MonoBehaviour, IPointerClickHandler
 {
     public AbstractItem objectModel;
     
-    private SpriteRenderer spriteRenderer;
-    private BoxCollider2D boxCollider;
+    protected SpriteRenderer spriteRenderer;
+    protected BoxCollider2D boxCollider;
 
-    void Start()
+    protected void Start()
     {
         Init();
     }
 
-    public void Init()
+    public virtual void Init()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
@@ -44,11 +44,5 @@ public class MainItemObject : MonoBehaviour, IPointerClickHandler, IPointerEnter
         Destroy(gameObject);
     }
 
-    public void OnPointerEnter(PointerEventData eventData)
-    {
-    }
 
-    public void OnPointerExit(PointerEventData eventData)
-    {
-    }
 }

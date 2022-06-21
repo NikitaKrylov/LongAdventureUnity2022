@@ -8,6 +8,7 @@ public class BaseItemStatView : StatView
     [SerializeField] protected new Text name;
     [SerializeField] protected Text description;
     [SerializeField] protected Text count;
+    [SerializeField] protected Text weight;
     [SerializeField] protected Image image;
     [SerializeField] protected Button button1;
 
@@ -26,6 +27,7 @@ public class BaseItemStatView : StatView
     protected override void SetItemData(Item obj)
     {
         count.text = obj.count.ToString();
+        weight.text = $"{obj.count * obj.currentItem.weight / 1000} Í„";
         button1.onClick.RemoveAllListeners();
         button1.onClick.AddListener(delegate { 
             obj.PopAll();

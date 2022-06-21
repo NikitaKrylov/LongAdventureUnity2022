@@ -10,6 +10,7 @@ public class UIManager : MonoBehaviour
     public UIAggregator aggregator;
     public AggregationComponent inventoryComponent;
     public AggregationComponent craftComponent;
+    public AggregationComponent bonfireComponent;
 
     public static UIManager Instance { get; private set; }
 

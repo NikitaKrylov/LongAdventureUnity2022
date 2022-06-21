@@ -51,6 +51,7 @@ public class CraftRecipeStatView : StatView
             }
         });
 
+        necessaryItems.text = "";
         for (int i = 0; i < obj.necessaryItems.Count; i++)
         {
             necessaryItems.text += $"{i+1}.{obj.necessaryItems[i].necessaryItem.name} x{obj.necessaryItems[i].neededAmount}   ";
