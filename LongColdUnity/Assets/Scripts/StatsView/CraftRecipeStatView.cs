@@ -41,7 +41,7 @@ public class CraftRecipeStatView : StatView
         button1.onClick.RemoveAllListeners();
         button1.onClick.AddListener(delegate{
 
-            PlayerInventory pI = PlayerInventory.GetInstance();
+            Inventory pI = Player.GetInstance().inventory;
             Item item = obj.Craft(pI.items, 1);
 
             if (item != null)

@@ -4,6 +4,16 @@ using UnityEngine;
 using System;
 
 
+public enum ConditionChangingForce
+{
+    StrongIncrease,
+    Increase,
+    None,
+    Decrease,
+    StrongDecrease,
+
+}
+
 [Serializable]
 public class Condition
 {
@@ -12,15 +22,8 @@ public class Condition
     public float Value { get; private set; } = 500;
 
 
-    public enum ChangingForce {
-        StrongIncrease,
-        Increase,
-        None,
-        Decrease,
-        StrongDecrease,
-        
-    }
-    public ChangingForce changingForce = ChangingForce.None;
+    
+    public ConditionChangingForce changingForce = ConditionChangingForce.None;
     public ConditionView conditionView;
 
     public float normalizedValue { 
@@ -45,20 +48,20 @@ public class Condition
     {
         SetValue(this.Value + value, animated);
     }
-    public virtual float GetChangingValue(ChangingForce changingForce)
+    public virtual float GetChangingValue(ConditionChangingForce changingForce)
     {
         switch (changingForce)
         {
-            case ChangingForce.StrongIncrease:
-                return 2;
-            case ChangingForce.Increase:
+            case ConditionChangingForce.StrongIncrease:
+                return 3;
+            case ConditionChangingForce.Increase:
                 return .5f;
-            case ChangingForce.None:
+            case ConditionChangingForce.None:
                 return 0;
-            case ChangingForce.Decrease:
+            case ConditionChangingForce.Decrease:
                 return -.5f;
-            case ChangingForce.StrongDecrease:
-                return -2;
+            case ConditionChangingForce.StrongDecrease:
+                return -3;
             default:
                 return 0;
         }

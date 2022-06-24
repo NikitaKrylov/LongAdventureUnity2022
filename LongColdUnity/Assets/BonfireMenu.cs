@@ -29,7 +29,7 @@ public class BonfireMenu : MonoBehaviour
     {
         fuelViewEobjects.ForEach(e => Destroy(e.gameObject));
         fuelViewEobjects.Clear();
-        CreateFuilViewItems(PlayerInventory.GetInstance().items);
+        CreateFuilViewItems(Player.GetInstance().inventory.items);
     }
 
     private void CreateFuilViewItems(List<Item> items)

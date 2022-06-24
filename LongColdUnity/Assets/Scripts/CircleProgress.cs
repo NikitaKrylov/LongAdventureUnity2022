@@ -6,7 +6,8 @@ using UnityEngine.UI;
 public class CircleProgress : MonoBehaviour
 {
     private static Image fillImage;
-    private RectTransform rectTransform ;
+    private static Text tooltipText;
+    private RectTransform rectTransform;
     private Camera _cam;
     private static float progress  = 0f;
     
@@ -16,6 +17,7 @@ public class CircleProgress : MonoBehaviour
         fillImage = GetComponent<Image>();
         rectTransform = GetComponent<RectTransform>();
         _cam = Camera.main;
+        tooltipText = GetComponentInChildren<Text>(); 
     }
 
     void Update()
@@ -29,6 +31,7 @@ public class CircleProgress : MonoBehaviour
     public static void ResetProgress()
     {
         progress = 0f;
+        SetTooltip("");
     }
     public static void ChangeProgress(float value)
     {
@@ -37,6 +40,10 @@ public class CircleProgress : MonoBehaviour
     public static void UpdateProgress(float value)
     {
         progress += value;
+    }
+    public static void SetTooltip(string text)
+    {
+        tooltipText.text = text;
     }
 
     

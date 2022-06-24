@@ -5,7 +5,7 @@ using System;
 
 public class UIManager : MonoBehaviour
 {
-    public ContainerViewer containerViewer;
+    public InventoryViewer containerViewer;
     [SerializeField] private GameObject playerUINavigationBar;
     public UIAggregator aggregator;
     public AggregationComponent inventoryComponent;

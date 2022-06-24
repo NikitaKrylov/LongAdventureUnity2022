@@ -37,11 +37,19 @@ public class FoodStat : BaseItemStatView
     {
         base.SetItemData(obj);
 
-        button2.onClick.RemoveAllListeners();
         button2.onClick.AddListener(delegate {
             ((Food)(obj.currentItem)).Use();
             obj.Remove(1);
             if (obj.count == 0) Close();
         });
+    }
+
+    protected override void SetInventoryViewCellData(InventoryViewCell obj)
+    {
+        base.SetInventoryViewCellData(obj);
+
+        button2.onClick.RemoveAllListeners();
+        SetItemData(obj.ii);
+        button2.onClick.AddListener(delegate { obj.inventoryViewer.UpdateCells(); });
     }
 }

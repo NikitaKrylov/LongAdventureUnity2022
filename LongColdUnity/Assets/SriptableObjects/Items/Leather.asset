@@ -18,6 +18,6 @@ MonoBehaviour:
   scale: {x: 1, y: 1, z: 1}
   category: 2
   prefab: {fileID: 5632101830399947250, guid: 5cd89a34172a0aa4583bd006f600768d, type: 3}
-  weight: 150
+  weight: 350
   craftable: 0
   unique: 0

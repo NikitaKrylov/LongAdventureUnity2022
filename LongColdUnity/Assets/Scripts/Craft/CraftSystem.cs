@@ -52,14 +52,14 @@ public class CraftSystem : MonoBehaviour
     {
         foreach (CraftItemPanel panel in _craftItemPanels)
         {
-            var playerInv = PlayerInventory.GetInstance();
+            var playerInv = Player.GetInstance().inventory;
             panel.SetPossibilityToCreate(panel.craftRecipe.Validate(playerInv.items));
         }
     }
 
     public void Craft(CraftRecipe recipe)
     {
-        Inventory inventory = PlayerInventory.GetInstance();
+        Inventory inventory = Player.GetInstance().inventory;
 
         if (!recipe.Validate(inventory.items)) 
         {

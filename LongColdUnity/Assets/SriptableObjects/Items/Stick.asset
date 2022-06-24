@@ -18,7 +18,7 @@ MonoBehaviour:
   scale: {x: 1.3, y: 1.3, z: 1.3}
   category: 2
   prefab: {fileID: 5632101830399947250, guid: 5cd89a34172a0aa4583bd006f600768d, type: 3}
-  weight: 150
+  weight: 250
   craftable: 0
   unique: 0
   fuelValue: 600

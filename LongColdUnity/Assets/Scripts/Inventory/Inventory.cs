@@ -8,18 +8,18 @@ using System;
 
 
 
-public class Inventory : MonoBehaviour
+public class Inventory
 {
-    [SerializeField] public UnityEvent<Item> OnAddItem;
-    [SerializeField] public UnityEvent<Item> OnRemoveItem;
-    [SerializeField] public UnityEvent<Item> OnChangeItem;
+    //[SerializeField] public UnityEvent<Item> OnAddItem;
+    //[SerializeField] public UnityEvent<Item> OnRemoveItem;
+    //[SerializeField] public UnityEvent<Item> OnChangeItem;
 
     public List<Item> items = new List<Item>();
     public int Count { get { return items.Count; } }
 
     private void Start()
     {
-        items.ForEach(item => OnAddItem.Invoke(item));
+        //items.ForEach(item => OnAddItem.Invoke(item));
     }
 
     public float GetWeight()
@@ -40,15 +40,21 @@ public class Inventory : MonoBehaviour
             Item currentItem = FindItemById(item.currentItem.GetInstanceID());
             currentItem.count += item.count;
             currentItem.Container = this;
-            OnAddItem?.Invoke(currentItem);
+            //OnAddItem?.Invoke(currentItem);
             return;
         }
         item.Container = this;
         items.Add(item);
-        OnAddItem?.Invoke(item);
+        //OnAddItem?.Invoke(item);
     }
 
-    
+    public void AddItems(List<Item> items)
+    {
+        foreach (Item item in items)
+        {
+            AddItem(item);
+        }
+    }
 
 
     public void PopItem(Item item)
@@ -56,7 +62,7 @@ public class Inventory : MonoBehaviour
         bool rezult = items.Remove(item);
         if (rezult)
         {
-            OnRemoveItem?.Invoke(item);
+            //OnRemoveItem?.Invoke(item);
             CreateObject(item);
         }
     }
@@ -69,13 +75,13 @@ public class Inventory : MonoBehaviour
             if (rezult.count == amount)
             {
                 items.Remove(item);
-                OnRemoveItem?.Invoke(item);
+                //OnRemoveItem?.Invoke(item);
                 CreateObject(item);
             }
             else if (rezult.count > amount)
             {
                 rezult.count -= amount;
-                OnChangeItem?.Invoke(item);
+                //OnChangeItem?.Invoke(item);
                 CreateObject(item, amount);
             }
         }
@@ -88,7 +94,7 @@ public class Inventory : MonoBehaviour
         bool rezult = items.Remove(item);
         if (rezult)
         {
-            OnRemoveItem?.Invoke(item);
+            //OnRemoveItem?.Invoke(item);
 
         }
     }
@@ -101,7 +107,7 @@ public class Inventory : MonoBehaviour
             if (rezult.count > amount)
             {
                 rezult.count -= amount;
-                OnChangeItem?.Invoke(rezult);
+                //OnChangeItem?.Invoke(rezult);
             }
             else if (rezult.count == amount)
             {
@@ -125,13 +131,14 @@ public class Inventory : MonoBehaviour
 
     public void CreateObject(Item item, int? amount = null)
     {
+        Player player = Player.GetInstance();
         item.Container = null;
         for (int i = 0; i < (amount ?? item.count); i++)
         { 
             item.currentItem.CreateObject(new Vector3(
-                transform.position.x,
-                transform.position.y + GetComponent<CapsuleCollider2D>().size.y * 3,
-                transform.position.z));
+                player.transform.position.x,
+                player.transform.position.y + player.GetComponent<CapsuleCollider2D>().size.y * 3,
+                player.transform.position.z));
         }
     }
 

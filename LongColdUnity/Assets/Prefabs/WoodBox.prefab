@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 7516467451271528295}
   - component: {fileID: 8723191202906978642}
   - component: {fileID: 483652525863334000}
-  - component: {fileID: 787886197}
   - component: {fileID: 787886208}
   m_Layer: 6
   m_Name: WoodBox
@@ -34,7 +33,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7516467451271528295
 SpriteRenderer:
@@ -56,7 +55,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: f7214dc3b8a63d74fae484daf90c2e63, type: 2}
+  - {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -126,7 +125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fe345b31efe8214b8399e1387ace4eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseClickType: 1
   pressTime: 0.85
+  tooltip: "\u041E\u0442\u043A\u0440\u044B\u0432\u0430\u0435\u043C..."
   PointEvent:
     m_PersistentCalls:
       m_Calls:
@@ -142,64 +143,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &787886197
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6966305645419223839}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9baf0eca9f7470345a984a9413a51024, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  OnAddItem:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: InventoryViewer, Assembly-CSharp
-        m_MethodName: AddViewItem
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnRemoveItem:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: InventoryViewer, Assembly-CSharp
-        m_MethodName: PopViewItem
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  OnChangeItem:
-    m_PersistentCalls:
-      m_Calls: []
-  items:
-  - currentItem: {fileID: 11400000, guid: 60a34bb000d8bda4f9163383277a3019, type: 2}
-    count: 2
-    Container: {fileID: 0}
-  - currentItem: {fileID: 11400000, guid: 206522aff95794347bdbefd20fab8508, type: 2}
-    count: 1
-    Container: {fileID: 0}
-  - currentItem: {fileID: 11400000, guid: ef1eba0ee1b07584f98241074726a86c, type: 2}
-    count: 2
-    Container: {fileID: 0}
-  - currentItem: {fileID: 11400000, guid: 5eeab770e1ae04a48bb76404dccfedc3, type: 2}
-    count: 5
-    Container: {fileID: 0}
 --- !u!114 &787886208
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -212,4 +155,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5358c4fc5e0cc043b0e6fd49cc56704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  container: {fileID: 787886197}
+  items:
+  - currentItem: {fileID: 11400000, guid: f4a305d9912e4974592a4905c38a3c71, type: 2}
+    count: 1
+  - currentItem: {fileID: 11400000, guid: ef1eba0ee1b07584f98241074726a86c, type: 2}
+    count: 2
+  - currentItem: {fileID: 11400000, guid: 206522aff95794347bdbefd20fab8508, type: 2}
+    count: 4
+  - currentItem: {fileID: 11400000, guid: 60a34bb000d8bda4f9163383277a3019, type: 2}
+    count: 2
+  - currentItem: {fileID: 11400000, guid: 5eeab770e1ae04a48bb76404dccfedc3, type: 2}
+    count: 3

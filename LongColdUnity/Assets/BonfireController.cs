@@ -9,6 +9,8 @@ public class BonfireController : MonoBehaviour
     [SerializeField, Tooltip("Режим работы")] private BonfireWorkType bonfireWorkType = BonfireWorkType.Fade;
     [SerializeField] private float combustionEfficiencyPersent;
 
+    [HideInInspector] public bool isActive = true;
+
     private float CE { get { return combustionEfficiencyPersent / 100; } }
 
 
@@ -31,6 +33,12 @@ public class BonfireController : MonoBehaviour
     private void Update()
     {
         if (bonfireWorkType == BonfireWorkType.Stay) return;
+
+        if (workingTime - Time.deltaTime <= 0)
+        {
+            isActive = false;
+            return;
+        }
 
         workingTime -= Time.deltaTime;
 

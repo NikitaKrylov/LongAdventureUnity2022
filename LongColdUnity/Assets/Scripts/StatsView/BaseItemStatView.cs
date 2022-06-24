@@ -21,14 +21,18 @@ public class BaseItemStatView : StatView
 
     protected override void SetInventoryViewCellData(InventoryViewCell obj)
     {
+        button1.onClick.RemoveAllListeners();
         SetItemData(obj.ii);
+        button1.onClick.AddListener(delegate {
+            obj.inventoryViewer.UpdateCells();
+        });
+
     }
 
     protected override void SetItemData(Item obj)
     {
         count.text = obj.count.ToString();
         weight.text = $"{obj.count * obj.currentItem.weight / 1000} Í„";
-        button1.onClick.RemoveAllListeners();
         button1.onClick.AddListener(delegate { 
             obj.PopAll();
             Close();

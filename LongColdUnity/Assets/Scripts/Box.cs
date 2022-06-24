@@ -4,16 +4,23 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
-    [SerializeField] private Container container;
+    private Inventory inventory;
+    [SerializeField] private List<Item> items = new List<Item>();
 
+    private void Start()
+    {
+        inventory = new Inventory();
+        inventory.AddItems(items);
+    }
 
     public void Open()
     {
         UIManager uiManager = UIManager.Instance;
         uiManager.inventoryComponent.Show();
 
-        ContainerViewer cv = uiManager.containerViewer;
-        cv.gameObject.SetActive(true);
-        cv.Show(container);
+        InventoryViewer invV = uiManager.containerViewer;
+        invV.SetInventory(inventory);
+        invV.gameObject.SetActive(true);
     }
+
 }

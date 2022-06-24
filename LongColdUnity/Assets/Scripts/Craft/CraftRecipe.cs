@@ -9,11 +9,12 @@ public class CraftRecipe : ScriptableObject
     public int exitAmount = 1;
 
     public List<CraftRecipeItem> necessaryItems = new List<CraftRecipeItem>();
+    public List<AbstractItem> requiredTools = new List<AbstractItem>(); 
     public string Name { get { return craftableItem.name; } }
     public Sprite Image { get { return craftableItem.image;} }
     public AbstractItem CraftableItem { get { return craftableItem; } }
 
-    public Item Craft(List<Item> sourceItems, int amount)
+    public Item Craft(List<Item> sourceItems, int amount, List<Item> requiredTools = null)
     {
         if (!Validate(sourceItems)) return null;
 
@@ -31,9 +32,10 @@ public class CraftRecipe : ScriptableObject
     {
         foreach (CraftRecipeItem item in necessaryItems)
         {
-            var rez = sourceItems.Find(x => x.currentItem == item.necessaryItem && x.count >= item.neededAmount);
-            if (rez == null) return false;  
+            var rez1 = sourceItems.Find(x => x.currentItem == item.necessaryItem && x.count >= item.neededAmount);
+            if (rez1 == null) return false;
         }
+
         return true;
     }
 

@@ -32,12 +32,13 @@ public class MainItemObject: MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        Take();
+        if (eventData.button == PointerEventData.InputButton.Left) Take();
+
     }
 
     public void Take()
     {
-        PlayerInventory inv = PlayerInventory.GetInstance();
+        Inventory inv = Player.GetInstance().inventory;
         GameObject.FindGameObjectWithTag("Player")?.GetComponent<AnimationController>()?.PlayTakeAnimation();
 
         Item item = new Item(objectModel, 1, inv);
