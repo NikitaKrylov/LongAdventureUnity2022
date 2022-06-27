@@ -30,9 +30,25 @@ public class MainItemObject: MonoBehaviour, IPointerClickHandler
     }
 
 
-    public void OnPointerClick(PointerEventData eventData)
+    public virtual void OnPointerClick(PointerEventData eventData)
     {
-        if (eventData.button == PointerEventData.InputButton.Left) Take();
+        if (eventData.button == PointerEventData.InputButton.Left)
+        {
+            Take();
+        }
+        else if (eventData.button == PointerEventData.InputButton.Right)
+        {
+            if (objectModel is Food)
+            {
+                ((Food)objectModel).Use();
+                Destroy(gameObject);
+            }
+            else if (objectModel is Medicine)
+            {
+                ((Medicine)objectModel).Use();
+                Destroy(gameObject);
+            }
+        }
 
     }
 

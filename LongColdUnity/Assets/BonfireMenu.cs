@@ -8,6 +8,8 @@ public class BonfireMenu : MonoBehaviour
     [SerializeField] private Transform fuelViewList;
     [SerializeField] private Text temperature;
     [SerializeField] private Text burningTime;
+    [SerializeField] private Text stateName;
+    [SerializeField] private Image fireLogo;
 
     public BonfireController bonfireController;
     public static BonfireMenu Instance { get; private set; }
@@ -22,7 +24,17 @@ public class BonfireMenu : MonoBehaviour
 
     private void Update()
     {
-        burningTime.text = $"{bonfireController.GetWorkTime() / 3600}ч {bonfireController.GetWorkTime() / 60}мин {bonfireController.GetWorkTime() % 60}сек";
+        if (bonfireController.bonfireWorkType == BonfireController.BonfireWorkType.Extinct)
+        {
+            burningTime.text = "Требуется розжег";
+            stateName.text = "(Потух)";
+        }
+        else
+        {
+            burningTime.text = $"{((int)bonfireController.GetWorkTime()) / 3600}ч {(int)bonfireController.GetWorkTime() / 60}мин {(int)bonfireController.GetWorkTime() % 60}сек";
+            stateName.text = "(Горит)";
+        }
+        fireLogo.fillAmount = bonfireController.GetWorkTime() / bonfireController.GetWorkTimeThreshold();
     }
 
     private void OnEnable()

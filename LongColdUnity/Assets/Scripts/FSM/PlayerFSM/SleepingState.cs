@@ -6,16 +6,13 @@ public class SleepingState : IState
     private GameObject gameObject;
     private AnimationController animationController;
 
-    public SleepingState(GameObject obj)
-    {
-        OnEnter(obj);
-    }
+
     public IState handleInput(GameObject obj)
     {
         if (!canSkip) return null;
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.U))
         {
-            return new StandingState(obj);
+            return new StandingState();
         }
         return null;
     }

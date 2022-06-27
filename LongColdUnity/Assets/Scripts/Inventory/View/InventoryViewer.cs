@@ -130,6 +130,10 @@ public class InventoryViewer : MonoBehaviour, IDropHandler
             }
         }    
     }
+    public void FilterViewByCategory2(ItemCategory category)
+    {
+
+    }
 
     private void OnDisable()
     {

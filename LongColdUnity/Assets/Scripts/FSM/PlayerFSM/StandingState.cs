@@ -6,26 +6,21 @@ public class StandingState : IState
     {
         if (Mathf.Abs(Input.GetAxis("Horizontal")) > .3)
         {
-            return new RunningState(obj);
+            return new RunningState();
         }
         else if (Input.GetKeyDown(KeyCode.U))
         {
-            return new SleepingState(obj);
+            return new SleepingState();
         }
         else if (Input.GetKey(KeyCode.LeftShift))
         {
-            return new ShiftingState(obj);
+            return new ShiftingState();
         }
         else if (FallingState.isFalling(obj))
         {
-            return new FallingState(obj);
+            return new FallingState();
         }
         return null;
-    }
-
-    public StandingState(GameObject obj)
-    {
-        OnEnter(obj);
     }
 
     public void OnEnter(GameObject gameObject){}

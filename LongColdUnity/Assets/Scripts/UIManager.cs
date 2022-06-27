@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject playerUINavigationBar;
     public UIAggregator aggregator;
     public AggregationComponent inventoryComponent;
+    public AggregationComponent equipmentComponent;
     public AggregationComponent craftComponent;
     public AggregationComponent bonfireComponent;
 
@@ -26,7 +27,8 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.I)) inventoryComponent.Execute();
         if (Input.GetKeyDown(KeyCode.C)) craftComponent.Execute();
-        
+        if (Input.GetKeyDown(KeyCode.V)) equipmentComponent.Execute();
+
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             aggregator.CloseAll();

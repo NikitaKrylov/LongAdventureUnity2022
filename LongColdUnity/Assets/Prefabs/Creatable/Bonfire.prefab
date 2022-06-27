@@ -14599,7 +14599,7 @@ Transform:
   - {fileID: 1687848620543318829}
   - {fileID: 6130262539546939823}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1687848621123719495
 SpriteRenderer:
@@ -14666,11 +14666,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particleSystemElements: []
-  workingTime: 60
-  workingTimeThreshold: 40
+  lightElements: []
+  workingTime: 30
+  workingTimeThreshold: 30
   bonfireWorkType: 1
   combustionEfficiencyPersent: 7
-  isActive: 1
 --- !u!61 &5419673
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -14709,7 +14709,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fe345b31efe8214b8399e1387ace4eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseClickType: 0
+  mouseClickType: 1
   pressTime: 0.4
   tooltip: 
   PointEvent:

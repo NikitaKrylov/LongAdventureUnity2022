@@ -10,11 +10,6 @@ public class FallingState : IState
     private static Collider2D collider;
     public static float fallingDistance = 3f;
 
-    public FallingState(GameObject obj)
-    {
-        OnEnter(obj);
-    }
-
     public static bool isFalling(GameObject obj)
     {
         if (collider == null) collider = obj.GetComponent<Collider2D>();
@@ -37,7 +32,7 @@ public class FallingState : IState
     {
         if (!isFalling(obj))
         {
-            return new StandingState(obj);
+            return new StandingState();
         }
         return null;
     }

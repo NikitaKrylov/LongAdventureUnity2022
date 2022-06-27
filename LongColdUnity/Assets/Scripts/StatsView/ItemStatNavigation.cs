@@ -5,8 +5,9 @@ using UnityEngine;
 public class ItemStatNavigation : MonoBehaviour
 {
     [SerializeField] private BaseItemStatView baseItemStatView;
-    [SerializeField] private MedicineStat medicineStatStatView;
-    [SerializeField] private FoodStat foodStatStatView;
+    [SerializeField] private MedicineStat medicineStatView;
+    [SerializeField] private FoodStat foodStatView;
+    [SerializeField] private WeaponStat weaponStatView;
 
     private UIAggregator aggregator;
      
@@ -42,12 +43,15 @@ public class ItemStatNavigation : MonoBehaviour
         switch (category)
         {
             case ItemCategory.Medicine:
-                medicineStatStatView.Show<T>(obj);
-                return medicineStatStatView;
+                medicineStatView.Show<T>(obj);
+                return medicineStatView;
 
             case ItemCategory.Food:
-                foodStatStatView.Show<T>(obj);
-                return foodStatStatView;
+                foodStatView.Show<T>(obj);
+                return foodStatView;
+            case ItemCategory.Weapon:
+                weaponStatView.Show<T>(obj);
+                return weaponStatView;
 
             default:
                 baseItemStatView.Show<T>(obj);

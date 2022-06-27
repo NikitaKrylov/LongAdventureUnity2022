@@ -7,16 +7,13 @@ public class ShiftingState : IState
     private AnimationController animationController;
     private GameObject gameObject;
 
-    public ShiftingState(GameObject obj)
-    {
-        OnEnter(obj);
-    }
+
 
     public IState handleInput(GameObject obj)
     {
         if (!Input.GetKey(KeyCode.LeftShift))
         {
-            return new StandingState(obj);
+            return new StandingState();
         }
         return null;
     }
