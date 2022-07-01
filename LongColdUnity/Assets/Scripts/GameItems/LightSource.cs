@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
+using UnityEngine.Experimental.Rendering.Universal;
 
 [CreateAssetMenu(fileName = "ScriptableObjects", menuName = "ScriptableObjects/Equipment/LightSource")]
 public class LightSource : Instrument

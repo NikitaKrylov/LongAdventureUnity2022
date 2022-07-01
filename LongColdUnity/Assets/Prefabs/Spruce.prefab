@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 3889922400333677518}
   - component: {fileID: 3889922400333677513}
   - component: {fileID: 3889922400333677512}
-  - component: {fileID: 3889922400333677514}
+  - component: {fileID: 23348274}
+  - component: {fileID: 722824738673406250}
   m_Layer: 0
   m_Name: Spruce
   m_TagString: Untagged
@@ -33,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3889922400333677518
 SpriteRenderer:
@@ -125,13 +126,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fe345b31efe8214b8399e1387ace4eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseClickType: 0
   pressTime: 7
   tooltip: "\u0420\u0443\u0431\u043A\u0430..."
   PointEvent:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 3889922400333677514}
-        m_TargetAssemblyTypeName: Tree, Assembly-CSharp
+      - m_Target: {fileID: 23348274}
+        m_TargetAssemblyTypeName: Twig, Assembly-CSharp
         m_MethodName: DropAndDestroy
         m_Mode: 1
         m_Arguments:
@@ -142,7 +144,13 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &3889922400333677514
+  OnStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnd:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &23348274
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -151,11 +159,115 @@ MonoBehaviour:
   m_GameObject: {fileID: 3889922400333677517}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75624ff4495759149870d95bca63cbe4, type: 3}
+  m_Script: {fileID: 11500000, guid: 9308e77fb16869e459474d8e00ad7526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropObjectModel: {fileID: 11400000, guid: fca37d2acd6bb02408014391fb7277af, type: 2}
-  dropAmount: 0
-  dropRandomAmount: 1
-  minDropAmount: 3
-  maxDropAmount: 5
+  dropItems:
+  - item: {fileID: 11400000, guid: fca37d2acd6bb02408014391fb7277af, type: 2}
+    minDropAmount: 3
+    maxDropAmount: 7
+    useDropChance: 0
+    dropChance: 0
+    useRandomDropAmountChance: 1
+  - item: {fileID: 11400000, guid: 8cdf65d966007d84790613c46b1d918b, type: 2}
+    minDropAmount: 1
+    maxDropAmount: 5
+    useDropChance: 0
+    dropChance: 0
+    useRandomDropAmountChance: 1
+--- !u!82 &722824738673406250
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3889922400333677517}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -6326102702533192519, guid: 9e45adb8ae1cb384a8f4673e39b6813e, type: 2}
+  m_audioClip: {fileID: 8300000, guid: b56f2ec29f8fa034d843a7fd08019bbe, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.768
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 20
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

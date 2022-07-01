@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Experimental.Rendering.Universal;
 using UnityEngine.Rendering.Universal;
 
 [RequireComponent(typeof(Light2D)), ExecuteInEditMode]
@@ -15,7 +16,7 @@ public class SourceLightItemObject : MainItemObject
     {
         base.Init();
 
-        if (objectModel is not LightSource) throw new Exception($"'{objectModel}' должен быть типа 'LightSource'");
+        if (!(objectModel is LightSource)) throw new Exception($"'{objectModel}' должен быть типа 'LightSource'");
 
         lightSource = GetComponentInChildren<Light2D>();
         lightSource.lightType = ((LightSource)objectModel).lightType;

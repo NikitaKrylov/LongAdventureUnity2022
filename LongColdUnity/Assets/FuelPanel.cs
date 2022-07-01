@@ -13,7 +13,7 @@ public class FuelPanel : MonoBehaviour
 
     public void SetData(Item item)
     {
-        if (item.currentItem is not BurningMaterial) throw new System.Exception($"Объект '{item}.currentItem' должен быть типа 'BurningMaterial'");
+        if (!(item.currentItem is BurningMaterial)) throw new System.Exception($"Объект '{item}.currentItem' должен быть типа 'BurningMaterial'");
 
         this.item = item;
         SetName(item.currentItem.name + " X" + item.count.ToString());

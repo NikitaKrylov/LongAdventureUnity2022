@@ -14,10 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Torch
   description: Simple source of light
-  image: {fileID: -2105823510, guid: 082bdc457e4e2d742b672d75f1b3b0e5, type: 3}
+  image: {fileID: -5474300014296715489, guid: 082bdc457e4e2d742b672d75f1b3b0e5, type: 3}
   scale: {x: 1.45, y: 1.45, z: 1.45}
   category: 4
   prefab: {fileID: 5632101830399947250, guid: 5cd89a34172a0aa4583bd006f600768d, type: 3}
   weight: 450
   craftable: 1
   unique: 0
+  durabilityPoints: 0

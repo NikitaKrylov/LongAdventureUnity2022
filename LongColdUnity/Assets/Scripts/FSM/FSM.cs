@@ -5,6 +5,7 @@ public class FSM
 {
 
     public IState currentState;
+    public IState lastState;
     public GameObject gameObject;
 
     public FSM(GameObject gameObject ,IState state)
@@ -25,13 +26,16 @@ public class FSM
     {
         if (state == null) return;
         currentState.OnExit();
+        lastState = currentState;
         currentState = state;
         currentState.OnEnter(gameObject);
     }
     private void InitState(IState state)
     {
+        lastState = null;
         currentState = state;
         currentState.OnEnter(gameObject);
+
     }
 
     

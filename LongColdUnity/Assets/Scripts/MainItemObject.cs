@@ -23,6 +23,7 @@ public class MainItemObject: MonoBehaviour, IPointerClickHandler
         spriteRenderer = GetComponent<SpriteRenderer>();
         boxCollider = GetComponent<BoxCollider2D>();
 
+
         spriteRenderer.sprite = objectModel.image;
         transform.localScale = objectModel.scale;
         boxCollider.size = spriteRenderer.sprite.bounds.size;
@@ -47,6 +48,11 @@ public class MainItemObject: MonoBehaviour, IPointerClickHandler
             {
                 ((Medicine)objectModel).Use();
                 Destroy(gameObject);
+            }
+            else if (objectModel is Weapon)
+            {
+                Player.GetInstance().EquipmentSet.SetWeapon((Weapon)objectModel);
+                Take();
             }
         }
 

@@ -25,12 +25,14 @@ public abstract class AbstractItem : ScriptableObject
     public bool unique;
 
 
-    public virtual GameObject CreateObject(Vector3 position, Vector3? rotation = null)
+    public virtual GameObject CreateObject(Vector3 position, Vector3? rotation = null, Vector3? force = null)
     {
         GameObject obj = Instantiate(prefab);
         obj.transform.position = position;
+
         if (rotation.HasValue) obj.transform.rotation = Quaternion.Euler(rotation.Value);
-      
+        if (force.HasValue) obj.GetComponent<Rigidbody2D>().AddForce(force.Value);
+
         obj.GetComponent<MainItemObject>().objectModel = this;
         return obj;
     }

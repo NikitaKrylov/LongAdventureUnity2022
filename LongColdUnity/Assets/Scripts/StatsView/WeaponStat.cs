@@ -22,6 +22,11 @@ public class WeaponStat : BaseItemStatView
             SetButtonAction((Weapon)obj);
             SetButtonText((Weapon)obj);
         });
+
+        button1.onClick.AddListener(delegate {
+            if (obj == equipmentSet.weaponSlot) equipmentSet.SetWeapon(null);
+        });
+
     }
 
     protected override void SetInventoryViewCellData(InventoryViewCell obj)

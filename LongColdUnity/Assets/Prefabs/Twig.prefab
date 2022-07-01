@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6081797165024484477}
   - component: {fileID: 8551493333560775895}
   - component: {fileID: 3273594733826567932}
+  - component: {fileID: 253413261}
   m_Layer: 6
   m_Name: Twig
   m_TagString: Untagged
@@ -29,11 +30,11 @@ Transform:
   m_GameObject: {fileID: 1216868987971659993}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -4.41, y: -1.77, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.2356, y: 1.1901, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &979426160304800812
 SpriteRenderer:
@@ -125,11 +126,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9308e77fb16869e459474d8e00ad7526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropObjectModel: {fileID: 11400000, guid: 8cdf65d966007d84790613c46b1d918b, type: 2}
-  dropAmount: 0
-  dropRandomAmount: 1
-  minDropAmount: 1
-  maxDropAmount: 2
+  dropItems:
+  - item: {fileID: 11400000, guid: 8cdf65d966007d84790613c46b1d918b, type: 2}
+    minDropAmount: 1
+    maxDropAmount: 3
+    useDropChance: 0
+    dropChance: 0
+    useRandomDropAmountChance: 1
 --- !u!114 &3273594733826567932
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -142,6 +145,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fe345b31efe8214b8399e1387ace4eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mouseClickType: 0
   pressTime: 0.3
   tooltip: "\u0421\u0431\u043E\u0440..."
   PointEvent:
@@ -159,3 +163,105 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+  OnStart:
+    m_PersistentCalls:
+      m_Calls: []
+  OnEnd:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!82 &253413261
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1216868987971659993}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: -6326102702533192519, guid: 9e45adb8ae1cb384a8f4673e39b6813e, type: 2}
+  m_audioClip: {fileID: 8300000, guid: cb333c911cc6428408447e2f6877c8a9, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 10
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0.568
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4

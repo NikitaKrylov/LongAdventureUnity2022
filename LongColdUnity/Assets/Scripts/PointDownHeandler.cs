@@ -10,9 +10,15 @@ public class PointDownHeandler : MonoBehaviour, IPointerDownHandler, IPointerUpH
     public PointerEventData.InputButton mouseClickType = PointerEventData.InputButton.Left;
     public float pressTime = .3f;
     public string tooltip;
+
     public float delta { get; private set; }
     private bool _isPressed = false;
+
     public UnityEvent PointEvent;
+    public UnityEvent OnStart;
+
+    [Tooltip("Ñמבûעטו גûחûגאועסÿ המ גûחמגא 'PointEvent'")] 
+    public UnityEvent OnEnd;
 
 
     public void OnPointerDown(PointerEventData eventData)
@@ -23,6 +29,7 @@ public class PointDownHeandler : MonoBehaviour, IPointerDownHandler, IPointerUpH
         delta = 0;
         CircleProgress.ResetProgress();
         CircleProgress.SetTooltip(tooltip ?? "");
+        OnStart.Invoke();
     }
 
     public void OnPointerUp(PointerEventData eventData)
@@ -44,6 +51,7 @@ public class PointDownHeandler : MonoBehaviour, IPointerDownHandler, IPointerUpH
             CircleProgress.ChangeProgress(delta / pressTime);
             if (delta >= pressTime)
             {
+                OnEnd.Invoke();
                 PointEvent.Invoke();
                 CircleProgress.ResetProgress();
 

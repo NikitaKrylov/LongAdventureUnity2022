@@ -6,6 +6,7 @@ using UnityEngine;
 public class MeleeWeapon : Weapon
 {
     public Vector2 distance;
+    public ComboHit comboHit;
     public override float CountDamage()
     {
         return baseDamage;

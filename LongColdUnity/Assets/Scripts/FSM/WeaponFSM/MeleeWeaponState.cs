@@ -5,9 +5,13 @@ using UnityEngine;
 public class MeleeWeaponState : WeaponState
 {
     private GameObject gameObject;
+    private GameObject hand;
+    private Animator animator;
+    private ComboSystem comboSystem;
+
     public override IState handleInput(GameObject obj)
     {
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Q) || equipmentSet.weaponSlot == null)
         {
             return GetStateByWeaponType(null); ;
         }
@@ -18,15 +22,29 @@ public class MeleeWeaponState : WeaponState
     {
         equipmentSet = obj.GetComponent<Player>().EquipmentSet;
         gameObject = obj;
+        animator = obj.GetComponent<Animator>();
+        comboSystem = obj.GetComponent<ComboSystem>();
+
+        foreach (SpriteRenderer o in gameObject.GetComponentsInChildren<SpriteRenderer>())
+        {
+            if (o.name == "Hand") hand = o.gameObject;
+        }
+        hand.GetComponent<SpriteRenderer>().sprite = equipmentSet.weaponSlot.image;
     }
 
-    public override void OnExit(){}
+    public override void OnExit()
+    {
+        hand.GetComponent<SpriteRenderer>().sprite = null;  
+    }
 
     public override void Update()
     {
+        MeleeWeapon weapon = (MeleeWeapon)(equipmentSet.weaponSlot);
+
         if (Input.GetMouseButtonDown(0))
         {
-            UseWeapon(gameObject);
+            //animator.SetTrigger("SwordHit1");
+            comboSystem.Play();
         }
     }
 
@@ -39,7 +57,6 @@ public class MeleeWeaponState : WeaponState
         foreach (RaycastHit2D hit in hits)
         {
             var cr = hit.transform.gameObject.GetComponent<Creature>();
-            Debug.Log(hit.transform.gameObject.name);
 
             if (cr != null) cr.Damage(equipmentSet.weaponSlot.CountDamage());
         }

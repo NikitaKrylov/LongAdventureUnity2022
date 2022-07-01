@@ -1,42 +1,39 @@
 using UnityEngine;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine.UI;
 
 
 public class Twig : MonoBehaviour
 {
-    [SerializeField] public AbstractItem dropObjectModel;
+    [SerializeField] private List<DropItem> dropItems = new List<DropItem>();
+    private AudioSource breakSound;
+    private bool isBreak = false;
 
-    public int dropAmount = 2;
-    [SerializeField] private bool dropRandomAmount = false;
-    [SerializeField] private int minDropAmount;
-    [SerializeField] private int maxDropAmount;
-
-
+    private void Start()
+    {
+        breakSound = GetComponent<AudioSource>();
+    }
     public void DropAndDestroy()
     {
-
-        if (dropObjectModel != null)
+        if (isBreak) return;
+        isBreak = true;
+        foreach (DropItem item in dropItems)
         {
-
-            int v;
-            if (dropRandomAmount) v = Random.Range(minDropAmount, maxDropAmount);
-            else v = dropAmount;
-
-            for (int i = 0; i < v; i++)
-            {
-                GameObject _obj = dropObjectModel.CreateObject(transform.position, Random.Range(-80, 80) * Vector3.forward);
-
-                Vector3 vector = Quaternion.AngleAxis(Random.Range(-360, 360), Vector3.forward) * Vector3.up;
-                _obj.GetComponent<Rigidbody2D>().AddForce(vector * 100);
-
-            }
+            Vector3 vector = Quaternion.AngleAxis(Random.Range(-360, 360), Vector3.forward) * Vector3.up;
+            item.Drop(transform.position, Vector3.up * Random.Range(-45, 45), vector * 150);
         }
 
 
+        if (breakSound != null) StartCoroutine(PlayBreakSoundAndDestroy());
+        else Destroy(gameObject);
 
-            
-
+    }
+    private IEnumerator PlayBreakSoundAndDestroy()
+    {
+        breakSound?.Play();
+        gameObject.GetComponent<SpriteRenderer>().enabled = false;  
+        yield return new WaitForSeconds(breakSound.clip.length);
         Destroy(gameObject);
-
     }
 }

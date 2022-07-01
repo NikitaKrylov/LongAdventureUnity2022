@@ -1,6 +1,7 @@
 using UnityEngine;
 using System;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.Experimental.Rendering.Universal;
 
 public class BonfireController : MonoBehaviour
 {

@@ -1,10 +1,11 @@
 using UnityEngine;
 using System;
+using UnityEngine.Experimental.Rendering.Universal;
 //using UnityEngine.Experimental.Rendering.LWRP;
 
 public class DayTimeSystem : MonoBehaviour
 {
-    [SerializeField] private UnityEngine.Rendering.Universal.Light2D _globalLight;
+    [SerializeField] private Light2D _globalLight;
     [SerializeField] private SpriteRenderer bacground;
     [SerializeField] private Gradient bacgroundGradient;
     private float _time = 0f;

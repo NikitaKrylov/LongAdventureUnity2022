@@ -17,6 +17,8 @@ public class Player : MonoBehaviour
         return playerInstance;
     }
 
+
+
     private void Start()
     {
         playerInstance = this;
@@ -31,14 +33,17 @@ public class Player : MonoBehaviour
     {
         PlayerFSM.Update();
         WeaponFSM.Update();
+
+        //if (Input.GetMouseButtonDown(0)) Hit();
     }
     public void Damage(float value)
     {
         conditionSet.HealthCondition.UpdateValue(value, true);
     }
-    public void Hit(Creature creature)
+    public void Hit()
     {
-        
+        WeaponState weaponState = (WeaponState)WeaponFSM.currentState;
+        weaponState.UseWeapon(gameObject);
     }
 
 }

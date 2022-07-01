@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Knife
   description: Knife
-  image: {fileID: -726091161, guid: 082bdc457e4e2d742b672d75f1b3b0e5, type: 3}
+  image: {fileID: -1579533938496964760, guid: 082bdc457e4e2d742b672d75f1b3b0e5, type: 3}
   scale: {x: 1, y: 1, z: 1}
   category: 1
   prefab: {fileID: 5632101830399947250, guid: 5cd89a34172a0aa4583bd006f600768d, type: 3}
@@ -24,3 +24,4 @@ MonoBehaviour:
   durabilityPoints: 0
   baseDamage: 100
   distance: {x: 2.2, y: 1.5}
+  comboHit: {fileID: 11400000, guid: 2da5cdd0c4ec6354886f221ae08b57d7, type: 2}

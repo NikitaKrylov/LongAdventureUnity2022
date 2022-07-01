@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Medical kit
   description: Medical kit
-  image: {fileID: -844189774, guid: 082bdc457e4e2d742b672d75f1b3b0e5, type: 3}
+  image: {fileID: 5010114363788059723, guid: 082bdc457e4e2d742b672d75f1b3b0e5, type: 3}
   scale: {x: 0.64, y: 0.64, z: 0.64}
   category: 3
   prefab: {fileID: 5632101830399947250, guid: 5cd89a34172a0aa4583bd006f600768d, type: 3}

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Charcoal
   description: Charcoal
-  image: {fileID: -2118687479, guid: 082bdc457e4e2d742b672d75f1b3b0e5, type: 3}
+  image: {fileID: -7112802815821705139, guid: 082bdc457e4e2d742b672d75f1b3b0e5, type: 3}
   scale: {x: 1.1, y: 1.1, z: 1.1}
   category: 0
   prefab: {fileID: 5632101830399947250, guid: 5cd89a34172a0aa4583bd006f600768d, type: 3}

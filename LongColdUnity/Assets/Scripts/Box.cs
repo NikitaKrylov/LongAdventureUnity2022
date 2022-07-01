@@ -5,16 +5,20 @@ using UnityEngine;
 public class Box : MonoBehaviour
 {
     private Inventory inventory;
+    private AudioSource openSound;
     [SerializeField] private List<Item> items = new List<Item>();
 
     private void Start()
     {
+        openSound = GetComponent<AudioSource>();
         inventory = new Inventory();
         inventory.AddItems(items);
     }
 
     public void Open()
     {
+        openSound.Play();
+
         UIManager uiManager = UIManager.Instance;
         uiManager.inventoryComponent.Show();
 

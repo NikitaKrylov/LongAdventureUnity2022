@@ -2,7 +2,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using System;
 using System.Collections.Generic;
-
+using System.Collections;
 
 public class Creature : MonoBehaviour, IPointerClickHandler
 {
@@ -14,10 +14,12 @@ public class Creature : MonoBehaviour, IPointerClickHandler
     public float defaultSpeed = 2.2f;
     private Rigidbody2D rb;
     private FSM fsm;
+    private SpriteRenderer spriteRenderer;
 
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        spriteRenderer = rb.GetComponent<SpriteRenderer>();
         fsm = new FSM(gameObject, new RabbitRunningState());
         HP = MaxXP;
     }
@@ -36,6 +38,7 @@ public class Creature : MonoBehaviour, IPointerClickHandler
     {
         HP -= value;
         if (HP <= 0) Kill();
+        else StartCoroutine(DamageAnimation());
     }
     private void DropLoot()
     {
@@ -47,5 +50,13 @@ public class Creature : MonoBehaviour, IPointerClickHandler
 
     public void OnPointerClick(PointerEventData eventData)
     {
+    }
+
+    private IEnumerator DamageAnimation()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(.1f);
+        spriteRenderer.color = Color.white;
+
     }
 }
