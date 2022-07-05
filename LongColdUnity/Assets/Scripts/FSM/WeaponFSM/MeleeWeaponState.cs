@@ -39,13 +39,13 @@ public class MeleeWeaponState : WeaponState
 
     public override void Update()
     {
-        MeleeWeapon weapon = (MeleeWeapon)(equipmentSet.weaponSlot);
+        //MeleeWeapon weapon = (MeleeWeapon)(equipmentSet.weaponSlot);
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            //animator.SetTrigger("SwordHit1");
-            comboSystem.Play();
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    //animator.SetTrigger("SwordHit1");
+        //    comboSystem.Play();
+        //}
     }
 
     public override void UseWeapon(GameObject obj)

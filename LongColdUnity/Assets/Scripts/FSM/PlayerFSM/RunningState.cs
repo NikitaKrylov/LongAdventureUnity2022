@@ -4,8 +4,9 @@ public class RunningState : IState
 {
     private Vector2 _direction = Vector2.zero;
     private Rigidbody2D _rb;
-    private AnimationController animationController;
+    private Animator animator;
     private GameObject gameObject;
+    private FSM weaponFSM;
     public static float speed = 5f;
 
 
@@ -23,6 +24,10 @@ public class RunningState : IState
         {
             return new FallingState();
         }
+        else if (Input.GetMouseButtonDown(0) && !(weaponFSM.currentState is NoWeaponState))
+        {
+            return new HitState();
+        }
         return null;
     }
 
@@ -30,21 +35,25 @@ public class RunningState : IState
     {
         gameObject = obj;
         _rb = gameObject.GetComponent<Rigidbody2D>();
-        animationController = gameObject.GetComponent<AnimationController>();
-
-        animationController.StartRunAnimation();
+        animator = gameObject.GetComponent<Animator>();
+        weaponFSM = obj.GetComponent<Player>().WeaponFSM;
+        animator.SetBool("isRunning", true);
     }
 
     public void OnExit()
     {
-        animationController.StopRunAnimation();
+        animator.SetBool("isRunning", false);
+
     }
 
     public void Update()
     {
         _direction.x = Input.GetAxis("Horizontal");
         _rb.velocity = new Vector2(_direction.x * speed, _rb.velocity.y);
-        animationController.Flip(new Vector3(Mathf.Sign(_direction.x), 1, 1));
+
+        var scale = gameObject.transform.localScale;
+        scale.x = Mathf.Abs(scale.x) * Mathf.Sign(_direction.x);
+        gameObject.transform.localScale = scale;
     }
 
 

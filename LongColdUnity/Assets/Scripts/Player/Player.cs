@@ -24,8 +24,8 @@ public class Player : MonoBehaviour
         playerInstance = this;
         inventory = new Inventory();
         EquipmentSet = new EquipmentSet(this);
-        PlayerFSM = new FSM(gameObject, new StandingState());
         WeaponFSM = new FSM(gameObject, new NoWeaponState());
+        PlayerFSM = new FSM(gameObject, new StandingState());
         conditionSet = gameObject.GetComponent<ConditionSet>();
     }
 

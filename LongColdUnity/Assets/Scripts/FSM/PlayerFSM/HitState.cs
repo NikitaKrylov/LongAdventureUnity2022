@@ -4,28 +4,33 @@ using UnityEngine;
 
 public class HitState : IState
 {
-    private Animator animator;
+    private ComboSystem comboSystem;
     private FSM weaponFSM;
     public IState handleInput(GameObject obj)
     {
-        throw new System.NotImplementedException();
+        if (!comboSystem.isActive)
+        {
+            return new StandingState();
+        }
+        return null;
     }
 
     public void OnEnter(GameObject obj)
     {
-        animator = obj.GetComponent<Animator>();
         weaponFSM = obj.GetComponent<Player>().WeaponFSM;
-
-        animator.SetTrigger("SwordHit1");
+        comboSystem = obj.GetComponent<ComboSystem>();
+        comboSystem.Play();
     }
 
     public void OnExit()
     {
-        throw new System.NotImplementedException();
     }
 
     public void Update()
     {
-        throw new System.NotImplementedException();
+        if (Input.GetMouseButtonDown(0))
+        {
+            comboSystem.Play();
+        }
     }
 }

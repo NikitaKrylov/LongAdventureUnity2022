@@ -10,12 +10,10 @@ using System;
 
 public class Inventory
 {
-    //[SerializeField] public UnityEvent<Item> OnAddItem;
-    //[SerializeField] public UnityEvent<Item> OnRemoveItem;
-    //[SerializeField] public UnityEvent<Item> OnChangeItem;
-
+   
     public List<Item> items = new List<Item>();
     public int Count { get { return items.Count; } }
+    public float maxContentWeight;
 
     private void Start()
     {
@@ -153,11 +151,19 @@ public class Item
     public AbstractItem currentItem;
     public int count;
     public Inventory Container  = null;
+    public readonly bool hasDurabilityPoints;
+    public float durabilityPoints { get; private set; }
 
-    public Item(AbstractItem item, int count, Inventory container)
+    public Item(AbstractItem item, int count, Inventory container, bool hasDurabilityPoints = false, float durabilityPoints = 0)
     {
         currentItem = item;
         this.count = count;
+
+        if (hasDurabilityPoints)
+        {
+            this.hasDurabilityPoints = hasDurabilityPoints;
+            this.durabilityPoints = durabilityPoints;   
+        }
         Container = container;
         Container?.AddItem(this);
     }

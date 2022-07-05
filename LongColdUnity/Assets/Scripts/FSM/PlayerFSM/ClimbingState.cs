@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class ClimbingState : IState
 {
-    private AnimationController animationController;
     private GameObject gameObject;
+    private Animator animator;
+    private Rigidbody2D rb;
+    private Ladder ladder;
 
     public IState handleInput(GameObject obj)
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Q))
         {
             return new StandingState();
         }
@@ -19,17 +21,29 @@ public class ClimbingState : IState
     public void OnEnter(GameObject obj)
     {
         gameObject = obj;
-        animationController = gameObject.GetComponent<AnimationController>();
-        animationController.StartClimbingAnimation();
+        animator = gameObject.GetComponent<Animator>();
+        rb = gameObject.GetComponent<Rigidbody2D>();
+
+        animator.SetBool("isClimbing", true);
+        rb.gravityScale = 0;
     }
 
     public void OnExit()
     {
-        animationController.StopClimbingAnimation();
+        animator.SetBool("isClimbing", false);
+        rb.gravityScale = 1;
+
     }
 
     public void Update()
     {
+        Vector2 direction = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
+        gameObject.transform.Translate(direction * ladder.UpSpeed * Time.deltaTime);
+    }
+
+    public void SetLadderType(Ladder ld)
+    {
+        ladder = ld;
     }
 }

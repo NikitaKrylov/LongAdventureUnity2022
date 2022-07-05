@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class FallingState : IState
 {
-
-    private AnimationController animationController;
-    private GameObject gameObject;
-    private static Collider2D collider;
     public static float fallingDistance = 3f;
+
+    private const float fallingXSpeed = 1.2f;
+    private GameObject gameObject;
+    private Animator animator;
+    private static Collider2D collider;
 
     public static bool isFalling(GameObject obj)
     {
@@ -41,17 +42,19 @@ public class FallingState : IState
     {
 
         gameObject = obj;
-        animationController = gameObject.GetComponent<AnimationController>();
-        animationController.StartFallingAnimation();
+        animator = gameObject.GetComponent<Animator>();
+        animator.SetBool("isFalling", true);
     }
 
     public void OnExit()
     {
-        animationController.StopFallingAnimation();
+        animator.SetBool("isFalling", false);
 
     }
 
     public void Update()
     {
+        float directionX = Input.GetAxis("Horizontal");
+        gameObject.transform.Translate(directionX * fallingXSpeed * Time.deltaTime, 0, 0);
     }
 }

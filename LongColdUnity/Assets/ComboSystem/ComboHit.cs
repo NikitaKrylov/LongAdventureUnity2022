@@ -13,13 +13,14 @@ public class ComboHit : ScriptableObject
     public string triggerName { get { return clip.name; } }
     public float addedOffset = 0;
 
+    [Header("Изменение Rigidbody2D во время анимации")]
+    public bool useRigidbody2DChanging = false;
+    public Vector2 force;
+
 
     public void Play(Animator anim)
     {
-        //anim.Play(clip.name);
         anim.SetTrigger(triggerName);
-
-        Debug.Log(triggerName);
     }
     public void Stop(Animator anim)
     {

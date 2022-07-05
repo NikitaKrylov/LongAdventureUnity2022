@@ -9,7 +9,8 @@ using UnityEngine.EventSystems;
 public class MainItemObject: MonoBehaviour, IPointerClickHandler
 {
     public AbstractItem objectModel;
-    
+
+    protected Item itemObject;
     protected SpriteRenderer spriteRenderer;
     protected BoxCollider2D boxCollider;
 
@@ -61,7 +62,7 @@ public class MainItemObject: MonoBehaviour, IPointerClickHandler
     public void Take()
     {
         Inventory inv = Player.GetInstance().inventory;
-        GameObject.FindGameObjectWithTag("Player")?.GetComponent<AnimationController>()?.PlayTakeAnimation();
+        GameObject.FindGameObjectWithTag("Player")?.GetComponent<Animator>().SetTrigger("Take");
 
         Item item = new Item(objectModel, 1, inv);
         Destroy(gameObject);

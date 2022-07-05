@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
+    [SerializeField] private List<Item> items = new List<Item>();
+    [SerializeField] private float maxContentWeight;
+
     private Inventory inventory;
     private AudioSource openSound;
-    [SerializeField] private List<Item> items = new List<Item>();
 
     private void Start()
     {

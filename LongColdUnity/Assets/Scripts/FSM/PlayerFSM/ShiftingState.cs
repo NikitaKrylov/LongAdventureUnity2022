@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ShiftingState : IState
 {
-    private AnimationController animationController;
+    private Animator animator;
     private GameObject gameObject;
 
 
@@ -21,13 +21,14 @@ public class ShiftingState : IState
     public void OnEnter(GameObject obj)
     {
         gameObject = obj;
-        animationController = gameObject.GetComponent<AnimationController>();
-        animationController.StartShiftingAnimation();
+        animator = gameObject.GetComponent<Animator>();
+        animator.SetBool("isShifting", true);
     }
 
     public void OnExit()
     {
-        animationController.StopShiftingAnimation();
+        animator.SetBool("isShifting", false);
+
     }
 
     public void Update()

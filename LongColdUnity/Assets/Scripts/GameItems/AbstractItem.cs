@@ -36,7 +36,7 @@ public abstract class AbstractItem : ScriptableObject
         obj.GetComponent<MainItemObject>().objectModel = this;
         return obj;
     }
-    public Item CreateItem(int amount)
+    public virtual Item CreateItem(int amount)
     {
         Item newItem = new Item(this, amount, null);
         return newItem; 

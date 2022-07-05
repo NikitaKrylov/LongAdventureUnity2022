@@ -4,7 +4,7 @@ public class SleepingState : IState
 {
     private bool canSkip = true;
     private GameObject gameObject;
-    private AnimationController animationController;
+    private Animator animator;
 
 
     public IState handleInput(GameObject obj)
@@ -20,13 +20,14 @@ public class SleepingState : IState
     public void OnEnter(GameObject obj)
     {
         gameObject = obj;
-        animationController = gameObject.GetComponent<AnimationController>();
+        animator = gameObject.GetComponent<Animator>();
 
-        animationController.PlaySleepingAnimation();
+
+        animator.SetBool("isSleeping", true);
     }
     public void OnExit()
     {
-        animationController.StopSleepingAnimation();
+        animator.SetBool("isSleeping", false);
     }
     public void Update(){}
 }

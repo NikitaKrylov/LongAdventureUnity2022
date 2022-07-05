@@ -11,7 +11,7 @@ public class ComboSystem : MonoBehaviour
     private Animator animator;
     private Player player;
 
-    private bool isActive = false;
+    public bool isActive { get; private set; } = false;
     private float time = 0;
 
     public MeleeWeapon GetMeleeWeapon()
@@ -56,7 +56,6 @@ public class ComboSystem : MonoBehaviour
 
         if (isActive) // последующие нажатия в тайминг
         {
-            Debug.Log("Переключение");
 
             if (time <= currentComboHit.clipLength + currentComboHit.addedOffset)
             {
@@ -76,7 +75,6 @@ public class ComboSystem : MonoBehaviour
         }
         else //первое нажатие
         {
-            Debug.Log("Первое нажатие");
             currentComboHit = startComboHit;
             currentComboHit.Play(animator);
             isActive = true;
@@ -91,5 +89,19 @@ public class ComboSystem : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void MakeTransformChanging()
+    {
+        if (currentComboHit == null) return;
+
+        var obj = animator.gameObject;
+
+        if (currentComboHit.useRigidbody2DChanging)
+        {
+            Vector2 force = currentComboHit.force;
+            force.x = Mathf.Abs(force.x) * Mathf.Sign(obj.transform.localScale.x);
+            obj.GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Force);
+        }
     }
 }
