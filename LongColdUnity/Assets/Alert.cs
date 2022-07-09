@@ -8,8 +8,12 @@ public class Alert : MonoBehaviour
 {
     private ViewTime viewTime;
     private static Alert Instance { get; set; }
-    private Text text;
-    private Image image;
+
+    [SerializeField] private Text text;
+    //[SerializeField] private Image image;
+    [SerializeField] private Outline outline;
+    [SerializeField] private GameObject alertBody;
+    [SerializeField] private Image timeLeftLine;
 
     private static bool viewIsActive = false;
     private float time;
@@ -22,17 +26,10 @@ public class Alert : MonoBehaviour
         Long
     }
 
-    private void Awake()
+    
+    void Awake()
     {
-        Debug.Log(1);
-    }
-    void Start()
-    {
-        Debug.Log(2);
-
         if (Instance == null) Instance = this;
-        text = GetComponent<Text>();
-        image = GetComponent<Image>();
     }
 
 
@@ -41,24 +38,16 @@ public class Alert : MonoBehaviour
         if (!viewIsActive) return;
 
         time += Time.deltaTime;
+        UpdateTimeLeftLine();
 
         if (time > targetTime)
         {
-            gameObject.SetActive(false);
-            viewIsActive = false;
+            Close();
         }
     }
 
 
-    private void OnEnable()
-    {
-        time = 0;
-    }
-
-    private void OnDisable()
-    {
-        time = 0;
-    }
+   
 
 
     private void SetText(string text)
@@ -67,30 +56,42 @@ public class Alert : MonoBehaviour
     }
     private void SetColor(Color color)
     {
-        image.color = color;
+        outline.effectColor = color;
     }
     private void SetViewTime(ViewTime viewTime)
     {
         switch (viewTime)
         {
             case ViewTime.Short:
-                targetTime = 1.5f;
+                targetTime = 2f;
                 return;
             case ViewTime.Default:
-                targetTime = 2.5f;
+                targetTime = 3f;
                 return;
             case ViewTime.Long:
                 targetTime = 4;
                 return;
         }
     }
+    private void UpdateTimeLeftLine()
+    {
+        timeLeftLine.fillAmount = targetTime / time - 1;
+    }
 
     public static void SendMessage(string message, ViewTime viewTime ,Color alerColor)
     {
         viewIsActive = true;
-        Instance.gameObject.SetActive(true);
+        Instance.alertBody.SetActive(true);
         Instance.SetText(message);
         Instance.SetColor(alerColor);
+        Instance.SetViewTime(viewTime);
+    }
+
+    public static void Close()
+    {
+        Instance.alertBody.SetActive(false);
+        viewIsActive = false;
+        Instance.time = 0;
     }
 
 }

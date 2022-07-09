@@ -4,24 +4,32 @@ using UnityEngine;
 
 public abstract class CreatureState : IState
 {
-    private Creature creature;
-    private float time = 0;
-    private float thresholdTime;
+    protected Creature creature;
+
 
     public abstract IState handleInput(GameObject obj);
 
-    public void OnEnter(GameObject obj)
+    public virtual void OnEnter(GameObject obj)
     {
-        thresholdTime = GetRandomTime();
         creature = obj.GetComponent<Creature>();
     }
 
     public abstract void OnExit();
 
-    public void Update()
-    {
-        time += Time.deltaTime;
-    }
 
     public abstract float GetRandomTime();
+
+    public abstract void Update();
+
+    protected GameObject DetectPlayer(float detectedRadius)
+    {
+        RaycastHit2D[] rayCasts = Physics2D.CircleCastAll(creature.transform.position, detectedRadius, Vector2.up);
+
+        foreach (RaycastHit2D raycastHit in rayCasts)
+        {
+            if (raycastHit.transform.CompareTag("Player")) return raycastHit.transform.gameObject;
+        }
+
+        return null;
+    }
 }

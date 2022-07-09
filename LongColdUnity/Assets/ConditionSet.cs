@@ -35,5 +35,6 @@ public class ConditionSet : MonoBehaviour
                 condition.Update(Time.deltaTime);
             }
         }
+       
     }
 }

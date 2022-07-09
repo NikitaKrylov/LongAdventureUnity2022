@@ -10,12 +10,14 @@ public class DropItem
     public int minDropAmount;
     public int maxDropAmount;
 
+    [Tooltip("Рандомное количество, если null, то дроп будет считаться по максимальному количеству")]
+    public bool useRandomDropAmountChance = false;
+
     [Tooltip("Шанс что дроп будет")] 
     public bool useDropChance = false;
     [Range(0f, 1f)] public float dropChance;
 
-    [Tooltip("Рандомное количество, если null, то дроп будет считаться по максимальному количеству")] 
-    public bool useRandomDropAmountChance = false;
+    
 
     public void Drop(Vector3 position, Vector3? rotation = null, Vector3? force = null)
     {

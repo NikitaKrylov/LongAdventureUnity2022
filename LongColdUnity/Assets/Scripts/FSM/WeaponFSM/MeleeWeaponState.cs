@@ -15,6 +15,10 @@ public class MeleeWeaponState : WeaponState
         {
             return GetStateByWeaponType(null); ;
         }
+        else if ( !(currentWeapon is MeleeWeapon) )
+        {
+            return GetStateByWeaponType(currentWeapon);
+        }
         return null;
     }
 
@@ -30,6 +34,8 @@ public class MeleeWeaponState : WeaponState
             if (o.name == "Hand") hand = o.gameObject;
         }
         hand.GetComponent<SpriteRenderer>().sprite = equipmentSet.weaponSlot.image;
+
+
     }
 
     public override void OnExit()

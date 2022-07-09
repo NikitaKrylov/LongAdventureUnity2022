@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 
-public class EquipmentSet 
+public class EquipmentSet  
 {
     public Weapon weaponSlot { get; private set; } = null;
     public Equipment firstEquipmentSlot { get; set; } = null;
@@ -20,6 +20,7 @@ public class EquipmentSet
     public void SetWeapon(Weapon weapon)
     {
         weaponSlot = weapon;
+
         if (weapon == null)
         {
             //weaponFSM.SetState(new NoWeaponState());
@@ -30,7 +31,7 @@ public class EquipmentSet
         }
         else if (weapon is FireWeapon)
         {
-            throw new Exception("FireWeaponState еще не создан, чтобы представлять состояние FireWeapon");
+            //throw new Exception("FireWeaponState еще не создан, чтобы представлять состояние FireWeapon");
         }
     }
 }

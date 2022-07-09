@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ComboSystem : MonoBehaviour
 {
-
     private EquipmentSet equipmentSet { get { return player.EquipmentSet; } }
     private ComboHit currentComboHit = null;
     private ComboHit startComboHit { get { return GetMeleeWeapon()?.comboHit;  } }

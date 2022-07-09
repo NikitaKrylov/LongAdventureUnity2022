@@ -39,8 +39,15 @@ public class FoodStat : BaseItemStatView
 
         button2.onClick.AddListener(delegate {
             ((Food)(obj.currentItem)).Use();
-            obj.Remove(1);
-            if (obj.count == 0) Close();
+            if (obj.count - 1 == 0)
+            {
+                obj.Remove(1);
+                Close();
+            }
+            else
+            {
+                obj.Remove(1);
+            }
         });
     }
 

@@ -1,39 +1,38 @@
 using UnityEngine;
 
-public class RabbitRunningState : IState
+public class RabbitWalkingState : BaseRabbitState
 {
 
     private Vector2 direction;
     private Rigidbody2D rb;
     private Animator animator;
-    private Creature creature;
 
-    private float time = 0;
-    private float thresholdTime;
 
-    public IState handleInput(GameObject obj)
+    public override IState handleInput(GameObject obj)
     {
-
-        if (time >= thresholdTime)
+        if (DetectPlayer(detectRadius) != null)
         {
-            thresholdTime = UpdateThresholdTime();
+            return new RabbitRunningAwayState();
+        }
+        else if (time >= thresholdTime)
+        {
+            thresholdTime = GetRandomTime();
             time = 0;
 
             if (Random.Range(1, 3) == 2)
             {
-                return new CreatureIdleState();
+                return new RabbitIdleState();
             }
         }
         return null;
     }
 
-    public void OnEnter(GameObject obj)
+    public override void OnEnter(GameObject obj)
     {
-        thresholdTime = UpdateThresholdTime();
-
+        base.OnEnter(obj);
+        thresholdTime = GetRandomTime();
         rb = obj.GetComponent<Rigidbody2D>();
         animator = obj.GetComponent<Animator>();
-        creature = obj.GetComponent<Creature>();
 
         animator.SetBool("isRunning", true);
 
@@ -45,21 +44,17 @@ public class RabbitRunningState : IState
         obj.transform.localScale = scale;
     }
 
-    public void OnExit()
+    public override void OnExit()
     {
         animator.SetBool("isRunning", false);
 
     }
 
-    public void Update()
+    public override void Update()
     {
+        base.Update();
         rb.velocity = new Vector2(direction.x * creature.defaultSpeed, rb.velocity.y);
-        time += Time.deltaTime;
-        //Debug.Log($"{time} {thresholdTime}");
     }
     
-    private float UpdateThresholdTime()
-    {
-        return Random.Range(2, 6);
-    }
+    
 }

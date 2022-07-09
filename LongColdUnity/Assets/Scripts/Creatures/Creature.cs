@@ -20,7 +20,7 @@ public class Creature : MonoBehaviour, IPointerClickHandler
     {
         rb = GetComponent<Rigidbody2D>();
         spriteRenderer = rb.GetComponent<SpriteRenderer>();
-        fsm = new FSM(gameObject, new RabbitRunningState());
+        fsm = new FSM(gameObject, new RabbitWalkingState());
         HP = MaxXP;
     }
 

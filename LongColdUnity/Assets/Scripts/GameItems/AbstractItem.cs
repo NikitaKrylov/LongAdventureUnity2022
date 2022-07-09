@@ -20,6 +20,8 @@ public abstract class AbstractItem : ScriptableObject
     public Vector3 scale;
     public ItemCategory category;
     public GameObject prefab;
+    public AudioClip dropSound;
+    public AudioClip pickUpSound;
     public float weight;
     public bool craftable;
     public bool unique;
