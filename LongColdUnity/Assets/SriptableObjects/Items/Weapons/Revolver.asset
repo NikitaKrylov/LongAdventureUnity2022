@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fde907550b5f98443b281cabc71245a7, type: 3}
+  m_Name: Revolver
+  m_EditorClassIdentifier: 
+  name: Revolver
+  description: Revolver
+  image: {fileID: -5557420877203330147, guid: 3c3a1b49505c18a46affa7f6b5596b32, type: 3}
+  scale: {x: 0.42, y: 0.42, z: 0.42}
+  category: 1
+  prefab: {fileID: 5632101830399947250, guid: 5cd89a34172a0aa4583bd006f600768d, type: 3}
+  dropSound: {fileID: 0}
+  pickUpSound: {fileID: 0}
+  weight: 430
+  craftable: 0
+  unique: 0
+  durabilityPoints: 0
+  baseDamage: 400
+  requiredAmmoType: 0
+  firingMode: 1
+  maxDistance: 7
+  fireSound: {fileID: 8300000, guid: 36e8ee7f4584b514e9787b32ef2ca12b, type: 3}
