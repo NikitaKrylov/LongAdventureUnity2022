@@ -13,8 +13,10 @@ MonoBehaviour:
   m_Name: TorchCraft
   m_EditorClassIdentifier: 
   craftableItem: {fileID: 11400000, guid: 622cf3ed4fb19aa44a29dcdf198df6c2, type: 2}
+  exitAmount: 1
   necessaryItems:
-  - necessaryItem: {fileID: 11400000, guid: 8cdf65d966007d84790613c46b1d918b, type: 2}
+  - necessaryItem: {fileID: 11400000, guid: 8e21480c83b9f4728a6f5ec49d6fa13a, type: 2}
     neededAmount: 1
-  - necessaryItem: {fileID: 11400000, guid: 5eeab770e1ae04a48bb76404dccfedc3, type: 2}
+  - necessaryItem: {fileID: 11400000, guid: 03abcdfa53f574ba4a61ba555fb43a41, type: 2}
     neededAmount: 1
+  requiredTools: []

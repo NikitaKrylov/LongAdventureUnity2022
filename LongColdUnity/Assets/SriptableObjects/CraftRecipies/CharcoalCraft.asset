@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bee6194794d5c1b4ca0205f5d3fdf1bb, type: 3}
   m_Name: CharcoalCraft
   m_EditorClassIdentifier: 
-  craftableItem: {fileID: 11400000, guid: 204adb5ed77a828439132e572ef2da2f, type: 2}
+  craftableItem: {fileID: 11400000, guid: 32134f0626ee84eac955619aea8ad796, type: 2}
   exitAmount: 2
   necessaryItems:
-  - necessaryItem: {fileID: 11400000, guid: fca37d2acd6bb02408014391fb7277af, type: 2}
+  - necessaryItem: {fileID: 11400000, guid: 9fdc203db0143495abc18fd24c8ebf9e, type: 2}
     neededAmount: 1
+  requiredTools: []

@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Canned
   description: Canned
-  image: {fileID: -8359046791051846603, guid: 082bdc457e4e2d742b672d75f1b3b0e5, type: 3}
+  image: {fileID: 1145178555, guid: 082bdc457e4e2d742b672d75f1b3b0e5, type: 3}
   scale: {x: 0.5, y: 0.5, z: 0.5}
   category: 0
   prefab: {fileID: 5632101830399947250, guid: 5cd89a34172a0aa4583bd006f600768d, type: 3}
+  dropSound: {fileID: 0}
+  pickUpSound: {fileID: 0}
   weight: 300
   craftable: 0
   unique: 0

@@ -17,6 +17,8 @@ public class FireWeapon : Weapon
     public FiringMode firingMode;
     public float maxDistance;
     public AudioClip fireSound;
+    public float cooldown;
+
     public override float CountDamage()
     {
         return  baseDamage;

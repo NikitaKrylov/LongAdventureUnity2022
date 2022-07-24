@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 17
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &979426160304800812
 SpriteRenderer:
@@ -127,12 +127,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropItems:
-  - item: {fileID: 11400000, guid: 8cdf65d966007d84790613c46b1d918b, type: 2}
+  - item: {fileID: 11400000, guid: 03abcdfa53f574ba4a61ba555fb43a41, type: 2}
     minDropAmount: 1
     maxDropAmount: 3
+    useRandomDropAmountChance: 1
     useDropChance: 0
     dropChance: 0
-    useRandomDropAmountChance: 1
 --- !u!114 &3273594733826567932
 MonoBehaviour:
   m_ObjectHideFlags: 0

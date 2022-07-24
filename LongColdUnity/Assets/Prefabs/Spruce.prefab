@@ -34,7 +34,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &3889922400333677518
 SpriteRenderer:
@@ -163,18 +163,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dropItems:
-  - item: {fileID: 11400000, guid: fca37d2acd6bb02408014391fb7277af, type: 2}
+  - item: {fileID: 11400000, guid: 9fdc203db0143495abc18fd24c8ebf9e, type: 2}
     minDropAmount: 3
     maxDropAmount: 7
+    useRandomDropAmountChance: 1
     useDropChance: 0
     dropChance: 0
-    useRandomDropAmountChance: 1
-  - item: {fileID: 11400000, guid: 8cdf65d966007d84790613c46b1d918b, type: 2}
+  - item: {fileID: 11400000, guid: 03abcdfa53f574ba4a61ba555fb43a41, type: 2}
     minDropAmount: 1
     maxDropAmount: 5
+    useRandomDropAmountChance: 1
     useDropChance: 0
     dropChance: 0
-    useRandomDropAmountChance: 1
 --- !u!82 &722824738673406250
 AudioSource:
   m_ObjectHideFlags: 0

@@ -10,6 +10,8 @@ public class FiringSystem : MonoBehaviour
             if (equipmentSet.weaponSlot is FireWeapon) return (FireWeapon)equipmentSet.weaponSlot;
             else return null;
                 } }
+    public bool isActive { get; private set; } = false;
+    private float time;
 
 
     void Start()

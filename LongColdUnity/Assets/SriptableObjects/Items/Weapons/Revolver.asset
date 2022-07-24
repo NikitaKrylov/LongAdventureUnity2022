@@ -29,3 +29,4 @@ MonoBehaviour:
   firingMode: 1
   maxDistance: 7
   fireSound: {fileID: 8300000, guid: 36e8ee7f4584b514e9787b32ef2ca12b, type: 3}
+  cooldown: 0.5

@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Camp light
   description: Camp light
-  image: {fileID: 3751467953933052258, guid: 082bdc457e4e2d742b672d75f1b3b0e5, type: 3}
+  image: {fileID: -283227345, guid: 082bdc457e4e2d742b672d75f1b3b0e5, type: 3}
   scale: {x: 0.57, y: 0.57, z: 0.57}
   category: 4
   prefab: {fileID: 5632101830399947250, guid: 0dd9375257bbacf41aea4849bcff084a, type: 3}
+  dropSound: {fileID: 0}
+  pickUpSound: {fileID: 0}
   weight: 1200
   craftable: 0
   unique: 0

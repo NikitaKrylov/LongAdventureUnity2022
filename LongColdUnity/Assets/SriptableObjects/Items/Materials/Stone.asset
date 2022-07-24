@@ -14,10 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Stone
   description: Little gray stone
-  image: {fileID: 295408931751608734, guid: 082bdc457e4e2d742b672d75f1b3b0e5, type: 3}
+  image: {fileID: -214521078, guid: 082bdc457e4e2d742b672d75f1b3b0e5, type: 3}
   scale: {x: 1.1, y: 1.1, z: 1.1}
   category: 2
   prefab: {fileID: 5632101830399947250, guid: 5cd89a34172a0aa4583bd006f600768d, type: 3}
+  dropSound: {fileID: 0}
+  pickUpSound: {fileID: 0}
   weight: 180
   craftable: 0
   unique: 0
