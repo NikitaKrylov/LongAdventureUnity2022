@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad16090e58aef6a42b37c1355876ae7d, type: 3}
   m_Name: Water
   m_EditorClassIdentifier: 
-  name: water
+  name: Water
   description: Water
   image: {fileID: -1845857888, guid: 082bdc457e4e2d742b672d75f1b3b0e5, type: 3}
   scale: {x: 0.5, y: 0.5, z: 0.5}

@@ -7,7 +7,7 @@ public class StandingState : IState
     {
         if (Mathf.Abs(Input.GetAxis("Horizontal")) > .3)
         {
-            return new RunningState();
+            return new WalkingState();
         }
         else if (Input.GetKeyDown(KeyCode.U))
         {

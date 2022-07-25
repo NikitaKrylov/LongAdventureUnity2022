@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,9 +10,7 @@ public class Alert : MonoBehaviour
     private ViewTime viewTime;
     private static Alert Instance { get; set; }
 
-    [SerializeField] private Text text;
-    //[SerializeField] private Image image;
-    [SerializeField] private Outline outline;
+    [SerializeField] private TextMeshProUGUI text;
     [SerializeField] private GameObject alertBody;
     [SerializeField] private Image timeLeftLine;
 
@@ -54,10 +53,7 @@ public class Alert : MonoBehaviour
     {
         this.text.text = text;
     }
-    private void SetColor(Color color)
-    {
-        outline.effectColor = color;
-    }
+    
     private void SetViewTime(ViewTime viewTime)
     {
         switch (viewTime)
@@ -66,10 +62,10 @@ public class Alert : MonoBehaviour
                 targetTime = 2f;
                 return;
             case ViewTime.Default:
-                targetTime = 3f;
+                targetTime = 3.5f;
                 return;
             case ViewTime.Long:
-                targetTime = 4;
+                targetTime = 4.5f;
                 return;
         }
     }
@@ -78,12 +74,11 @@ public class Alert : MonoBehaviour
         timeLeftLine.fillAmount = targetTime / time - 1;
     }
 
-    public static void SendMessage(string message, ViewTime viewTime ,Color alerColor)
+    public static void SendMessage(string message, ViewTime viewTime )
     {
         viewIsActive = true;
         Instance.alertBody.SetActive(true);
         Instance.SetText(message);
-        Instance.SetColor(alerColor);
         Instance.SetViewTime(viewTime);
     }
 

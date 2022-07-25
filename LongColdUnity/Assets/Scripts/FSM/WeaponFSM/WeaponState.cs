@@ -14,7 +14,7 @@ public abstract class WeaponState : IState
     public abstract void OnExit();
 
     public abstract void Update();
-    public abstract void UseWeapon(GameObject obj);
+    public abstract void UseWeapon(GameObject obj, float damageWeight = 1);
 
     public static WeaponState GetStateByWeaponType(Weapon weapon)
     {

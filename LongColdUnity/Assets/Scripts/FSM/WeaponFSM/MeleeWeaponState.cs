@@ -54,7 +54,7 @@ public class MeleeWeaponState : WeaponState
         //}
     }
 
-    public override void UseWeapon(GameObject obj)
+    public override void UseWeapon(GameObject obj, float damageWeight = 1)
     {
         MeleeWeapon weapon = (MeleeWeapon)equipmentSet.weaponSlot;
 
@@ -64,7 +64,7 @@ public class MeleeWeaponState : WeaponState
         {
             var cr = hit.transform.gameObject.GetComponent<Creature>();
 
-            if (cr != null) cr.Damage(equipmentSet.weaponSlot.CountDamage());
+            if (cr != null) cr.Damage(equipmentSet.weaponSlot.CountDamage() * damageWeight);
         }
         
     }

@@ -36,6 +36,7 @@ public class Creature : MonoBehaviour, IPointerClickHandler
     }
     public void Damage(float value)
     {
+        Debug.Log(value);
         HP -= value;
         if (HP <= 0) Kill();
         else StartCoroutine(DamageAnimation());

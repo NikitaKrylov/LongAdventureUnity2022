@@ -51,7 +51,7 @@ public class FireWeaponState : WeaponState
     }
 
 
-    public override void UseWeapon(GameObject obj)
+    public override void UseWeapon(GameObject obj, float damageWeight = 1)
     {
         var fireSound = ((FireWeapon)currentWeapon).fireSound;
         if (fireSound != null) audioSource.PlayOneShot(fireSound);
@@ -64,7 +64,7 @@ public class FireWeaponState : WeaponState
         {
             var cr = collider.transform.gameObject.GetComponent<Creature>();
 
-            if (cr != null) cr.Damage(currentWeapon.CountDamage());
+            if (cr != null) cr.Damage(currentWeapon.CountDamage() * damageWeight);
         }
     }
 }

@@ -41,6 +41,15 @@ public class SourceLightItemObject : MainItemObject
         }
     }
 
+    private void OnMouseOver()
+    {
+        string text;
+        if (isActive) text = "Off";
+        else text = "On";
+
+        Tooltip.Show(objectModel.name, "Take", text );
+    }
+
     public void TurnOn()
     {
         lightSource.intensity = ((LightSource)objectModel).intensity;

@@ -25,7 +25,7 @@ public class NoWeaponState : WeaponState
     {
     }
 
-    public override void UseWeapon(GameObject obj)
+    public override void UseWeapon(GameObject obj, float damageWeight)
     {
     }
 }

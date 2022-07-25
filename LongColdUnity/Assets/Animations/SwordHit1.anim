@@ -7,7 +7,7 @@ AnimationClip:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: SwordHit1
-  serializedVersion: 6
+  serializedVersion: 7
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -49,6 +49,7 @@ AnimationClip:
       typeID: 212
       customType: 23
       isPPtrCurve: 1
+      isIntCurve: 0
     pptrCurveMapping:
     - {fileID: 413466564722158248, guid: 3cee53e9912c7f146aa5e4a6ae9223a3, type: 3}
     - {fileID: -7384182149723659870, guid: 3cee53e9912c7f146aa5e4a6ae9223a3, type: 3}
@@ -85,6 +86,6 @@ AnimationClip:
     functionName: Hit
     data: 
     objectReferenceParameter: {fileID: 0}
-    floatParameter: 0
+    floatParameter: 0.85
     intParameter: 0
     messageOptions: 0

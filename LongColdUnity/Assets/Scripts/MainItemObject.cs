@@ -6,10 +6,9 @@ using UnityEngine.EventSystems;
 
 
 [ExecuteInEditMode]
-public class MainItemObject: MonoBehaviour, IPointerClickHandler
+public class MainItemObject: MonoBehaviour, IPointerClickHandler,  IPointerExitHandler
 {
     public AbstractItem objectModel;
-
     protected Item itemObject;
     protected SpriteRenderer spriteRenderer;
     protected BoxCollider2D boxCollider;
@@ -65,8 +64,24 @@ public class MainItemObject: MonoBehaviour, IPointerClickHandler
         GameObject.FindGameObjectWithTag("Player")?.GetComponent<Animator>().SetTrigger("Take");
 
         Item item = new Item(objectModel, 1, inv);
+        Tooltip.Hide();
         Destroy(gameObject);
     }
 
 
+    private void OnMouseOver()
+    {
+        string text = "";
+
+        if (objectModel is Food) text = "Eat";
+        else if (objectModel is Medicine) text = "Use";
+        else if (objectModel is Weapon) text = "Equip";
+
+        Tooltip.Show(objectModel.name, "Take", text);
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        Tooltip.Hide();
+    }
 }
