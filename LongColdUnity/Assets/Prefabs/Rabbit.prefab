@@ -30,11 +30,11 @@ Transform:
   m_GameObject: {fileID: 8707253871132191923}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -13.01, y: -1.35, z: 0}
-  m_LocalScale: {x: 1.1065, y: 1.1065, z: 1.1065}
+  m_LocalScale: {x: -1.1065, y: 1.1065, z: 1.1065}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 40
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &8707253871132191924
 SpriteRenderer:
@@ -167,8 +167,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b2affe762006e54eabb4242e29e9c11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxXP: 400
-  HP: 400
+  MaxXP: 2000
+  HP: 2000
   dropItems:
   - item: {fileID: 11400000, guid: 8e21480c83b9f4728a6f5ec49d6fa13a, type: 2}
     minDropAmount: 1
@@ -176,4 +176,5 @@ MonoBehaviour:
     useRandomDropAmountChance: 1
     useDropChance: 0
     dropChance: 0
+  floatingTextPrefab: {fileID: 1521971500311081794, guid: c3015a14a7b604f4180811e1521c3c6d, type: 3}
   defaultSpeed: 1.5

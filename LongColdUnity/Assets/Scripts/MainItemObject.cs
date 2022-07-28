@@ -71,13 +71,38 @@ public class MainItemObject: MonoBehaviour, IPointerClickHandler,  IPointerExitH
 
     private void OnMouseOver()
     {
-        string text = "";
+        string rightActionText = "";
+        string descriptionText = "";
 
-        if (objectModel is Food) text = "Eat";
-        else if (objectModel is Medicine) text = "Use";
-        else if (objectModel is Weapon) text = "Equip";
+        if (objectModel is Food)
+        {
+            rightActionText = "Eat";
+            if (objectModel is Water)
+            {
+                descriptionText = $"Water value: {((Water)objectModel).waterValue}";
+                rightActionText = "Drink";
+            }
+            else if (objectModel is SolidFood)
+            {
+                descriptionText = $"Food value: {((SolidFood)objectModel).foodValue}";
+            }
+            else if (objectModel is ComboFood)
+            {
+                descriptionText = $"Water value: {((ComboFood)objectModel).waterValue}\nFood value: {((ComboFood)objectModel).foodValue}";
+            }
+        }
+        else if (objectModel is Medicine)
+        {
+            rightActionText = "Use";
+            descriptionText = $"Recovers: {((Medicine)objectModel).recoveringValue} HP";
+        }
+        else if (objectModel is Weapon)
+        {
+            rightActionText = "Equip";
+            descriptionText = $"Base damage: {((Weapon)objectModel).baseDamage}";
+        }
 
-        Tooltip.Show(objectModel.name, "Take", text);
+        Tooltip.Show(objectModel.name, descriptionText, "Take", rightActionText);
     }
 
     public void OnPointerExit(PointerEventData eventData)

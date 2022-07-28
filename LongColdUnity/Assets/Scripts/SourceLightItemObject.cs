@@ -44,10 +44,10 @@ public class SourceLightItemObject : MainItemObject
     private void OnMouseOver()
     {
         string text;
-        if (isActive) text = "Off";
-        else text = "On";
+        if (isActive) text = "Turn off";
+        else text = "Turn on";
 
-        Tooltip.Show(objectModel.name, "Take", text );
+        Tooltip.Show(objectModel.name, "Emits light", "Take", text );
     }
 
     public void TurnOn()

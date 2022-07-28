@@ -3,6 +3,7 @@ using UnityEngine.EventSystems;
 using System;
 using System.Collections.Generic;
 using System.Collections;
+using TMPro;
 
 public class Creature : MonoBehaviour, IPointerClickHandler
 {
@@ -10,6 +11,7 @@ public class Creature : MonoBehaviour, IPointerClickHandler
      public float HP;
 
     [SerializeField] private List<DropItem> dropItems = new List<DropItem>();
+    [SerializeField] private GameObject floatingTextPrefab;
 
     public float defaultSpeed = 2.2f;
     private Rigidbody2D rb;
@@ -36,10 +38,24 @@ public class Creature : MonoBehaviour, IPointerClickHandler
     }
     public void Damage(float value)
     {
-        Debug.Log(value);
+        StartCoroutine(DamageAnimation());
         HP -= value;
-        if (HP <= 0) Kill();
-        else StartCoroutine(DamageAnimation());
+        if (HP <= 0) 
+        {
+            Kill();
+        } 
+        else 
+        {
+            ShowFloatingText(value.ToString(), transform.parent);
+        }
+        
+    }
+
+    private void ShowFloatingText(string text, Transform tr)
+    {
+        var ft = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity, tr);
+        TextMeshPro textMesh = ft.GetComponent<TextMeshPro>();
+        textMesh.text = text;
     }
     private void DropLoot()
     {
