@@ -16,5 +16,4 @@ MonoBehaviour:
   previousComboHit: {fileID: 11400000, guid: e39db7c0672f8494d99270d66ab068e4, type: 2}
   nextComboHit: {fileID: 0}
   addedOffset: 0
-  useRigidbody2DChanging: 1
-  force: {x: 350, y: 0}
+  rigidbody2DForce: {x: 450, y: 0}

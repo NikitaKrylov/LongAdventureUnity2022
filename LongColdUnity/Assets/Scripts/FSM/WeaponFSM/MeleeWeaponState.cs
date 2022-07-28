@@ -7,7 +7,7 @@ public class MeleeWeaponState : WeaponState
     private GameObject gameObject;
     private GameObject hand;
     private Animator animator;
-    private ComboSystem comboSystem;
+    private MeleeFightSystem meleeFightSystem;
 
     public override IState handleInput(GameObject obj)
     {
@@ -27,7 +27,7 @@ public class MeleeWeaponState : WeaponState
         equipmentSet = obj.GetComponent<Player>().EquipmentSet;
         gameObject = obj;
         animator = obj.GetComponent<Animator>();
-        comboSystem = obj.GetComponent<ComboSystem>();
+        meleeFightSystem = obj.GetComponent<MeleeFightSystem>();
 
         foreach (SpriteRenderer o in gameObject.GetComponentsInChildren<SpriteRenderer>())
         {
@@ -45,13 +45,10 @@ public class MeleeWeaponState : WeaponState
 
     public override void Update()
     {
-        //MeleeWeapon weapon = (MeleeWeapon)(equipmentSet.weaponSlot);
-
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    //animator.SetTrigger("SwordHit1");
-        //    comboSystem.Play();
-        //}
+        if (Input.GetMouseButtonDown(0))
+        {
+            meleeFightSystem.Play();
+        }
     }
 
     public override void UseWeapon(GameObject obj, float damageWeight = 1)

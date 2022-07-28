@@ -25,10 +25,7 @@ public class StandingState : IState
         {
             return new FallingState();
         }
-        else if (Input.GetMouseButtonDown(0) && !(weaponFSM.currentState is NoWeaponState))
-        {
-            return new HitState();
-        }
+        
         return null;
     }
 

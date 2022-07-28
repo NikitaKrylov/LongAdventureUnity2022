@@ -8,6 +8,7 @@ public class FireWeaponState : WeaponState
     private Camera m_Camera;
     private GameObject gameObject;
     private AudioSource audioSource;
+    private FiringFightSystem firingFightSystem;
     public override IState handleInput(GameObject obj)
     {
         if (Input.GetKeyDown(KeyCode.Q) || currentWeapon == null)
@@ -26,6 +27,7 @@ public class FireWeaponState : WeaponState
         gameObject = obj;
         audioSource = gameObject.GetComponent<AudioSource>();
         equipmentSet = obj.GetComponent<Player>().EquipmentSet;
+        firingFightSystem = obj.GetComponent<FiringFightSystem>();  
         m_Camera = Camera.main;
 
         foreach (SpriteRenderer o in gameObject.GetComponentsInChildren<SpriteRenderer>())
@@ -44,9 +46,13 @@ public class FireWeaponState : WeaponState
 
     public override void Update()
     {
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    UseWeapon(gameObject);
+        //}
         if (Input.GetMouseButtonDown(0))
         {
-            UseWeapon(gameObject);
+            firingFightSystem.Play();
         }
     }
 

@@ -6,16 +6,13 @@ using UnityEngine;
 public class ComboHit : ScriptableObject
 {
     public AnimationClip clip;
-    public ComboHit previousComboHit = null;
     public ComboHit nextComboHit = null;
    
     public float clipLength { get { return clip.length; } }
     public string triggerName { get { return clip.name; } }
-    public float addedOffset = 0;
 
     [Header("Изменение Rigidbody2D во время анимации")]
-    public bool useRigidbody2DChanging = false;
-    public Vector2 force;
+    public Vector2 rigidbody2DForce = Vector2.zero;
 
 
     public void Play(Animator anim)
