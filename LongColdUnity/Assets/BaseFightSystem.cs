@@ -5,5 +5,5 @@ using UnityEngine;
 public abstract class BaseFightSystem : MonoBehaviour
 {
     public abstract void Play();
-    public abstract void UseWeapon();
+    public abstract void UpdateSystem();
 }

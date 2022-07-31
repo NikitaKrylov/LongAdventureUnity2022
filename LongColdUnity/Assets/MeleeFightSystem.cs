@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Player))]
 public class MeleeFightSystem : BaseFightSystem
 {
     private Player player;
     private Animator animator;
+    private AudioSource audioSource;
     private MeleeWeapon weapon { get { return (MeleeWeapon)player.EquipmentSet.weaponSlot; } }
     private ComboHit currentCombo;
     private ComboHit startCombo { get { return weapon.comboHit; } }
@@ -58,9 +60,12 @@ public class MeleeFightSystem : BaseFightSystem
         force.x *= Mathf.Sign(player.transform.localScale.x);
         player.gameObject.GetComponent<Rigidbody2D>().AddForce(force, ForceMode2D.Force);
     }
-
-    public override void UseWeapon()
+    public void PlayComboSound()
     {
-        throw new System.NotImplementedException();
+        audioSource.PlayOneShot(currentCombo?.audioClip);
+    }
+
+    public override void UpdateSystem()
+    {
     }
 }

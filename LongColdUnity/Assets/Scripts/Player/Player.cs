@@ -21,13 +21,12 @@ public class Player : MonoBehaviour
     }
 
 
-
     private void Start()
     {
         playerInstance = this;
         inventory = new Inventory();
         EquipmentSet = new EquipmentSet(this);
-        WeaponFSM = new FSM(gameObject, new NoWeaponState());
+        WeaponFSM = new FSM(gameObject, WeaponState.GetStateByWeaponType(EquipmentSet.weaponSlot));
         PlayerFSM = new FSM(gameObject, new StandingState());
         conditionSet = gameObject.GetComponent<ConditionSet>();
     }
@@ -36,8 +35,6 @@ public class Player : MonoBehaviour
     {
         PlayerFSM.Update();
         WeaponFSM.Update();
-
-        //if (Input.GetMouseButtonDown(0)) Hit();
     }
     public void Damage(float value)
     {

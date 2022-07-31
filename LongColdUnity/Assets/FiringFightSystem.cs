@@ -6,7 +6,8 @@ using UnityEngine;
 public class FiringFightSystem : BaseFightSystem
 {
     private Player player;
-    private MeleeWeapon weapon { get { return (MeleeWeapon)player.EquipmentSet.weaponSlot; } }
+    private FireWeapon weapon { get { return (FireWeapon)player.EquipmentSet.weaponSlot; } }
+    private float time = 0f;
 
 
     private void Start()
@@ -15,11 +16,15 @@ public class FiringFightSystem : BaseFightSystem
     }
     public override void Play()
     {
-        
+        if (time > weapon.cooldown)
+        {
+            player.Hit();
+            time = 0f;
+        }
     }
 
-    public override void UseWeapon()
+    public override void UpdateSystem()
     {
-        throw new System.NotImplementedException();
+        time += Time.deltaTime;
     }
 }

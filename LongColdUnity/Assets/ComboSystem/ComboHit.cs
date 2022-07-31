@@ -7,6 +7,7 @@ public class ComboHit : ScriptableObject
 {
     public AnimationClip clip;
     public ComboHit nextComboHit = null;
+    public AudioClip audioClip;
    
     public float clipLength { get { return clip.length; } }
     public string triggerName { get { return clip.name; } }

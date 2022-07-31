@@ -54,6 +54,7 @@ public class MainItemObject: MonoBehaviour, IPointerClickHandler,  IPointerExitH
                 Player.GetInstance().EquipmentSet.SetWeapon((Weapon)objectModel);
                 Take();
             }
+            Tooltip.Hide();
         }
 
     }

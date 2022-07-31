@@ -35,22 +35,25 @@ public class FireWeaponState : WeaponState
             if (o.name == "Hand") hand = o.gameObject;
         }
         hand.GetComponent<SpriteRenderer>().sprite = currentWeapon.image;
+        hand.transform.localScale = new Vector3(
+            hand.transform.localScale.x / obj.transform.localScale.x * equipmentSet.weaponSlot.scale.x,
+            hand.transform.localScale.y / obj.transform.localScale.y * equipmentSet.weaponSlot.scale.y,
+            hand.transform.localScale.z / obj.transform.localScale.z * equipmentSet.weaponSlot.scale.z
+            );
 
     }
 
     public override void OnExit()
     {
         hand.GetComponent<SpriteRenderer>().sprite = null;
+        hand.transform.localScale  = Vector3.one;
 
     }
 
     public override void Update()
     {
-        //if (Input.GetMouseButtonDown(0))
-        //{
-        //    UseWeapon(gameObject);
-        //}
-        if (Input.GetMouseButtonDown(0))
+        firingFightSystem.UpdateSystem();
+        if (Input.GetMouseButton(1) && Input.GetMouseButtonDown(0))
         {
             firingFightSystem.Play();
         }
