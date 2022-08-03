@@ -18,7 +18,6 @@ public class CraftRecipe : ScriptableObject
     {
         if (!Validate(sourceItems)) return null;
 
-        //Корявый код
         foreach (CraftRecipeItem recipeItem in necessaryItems)
         {
             Item rez = sourceItems.Find(x => x.currentItem == recipeItem.necessaryItem);
@@ -34,6 +33,11 @@ public class CraftRecipe : ScriptableObject
         {
             var rez1 = sourceItems.Find(x => x.currentItem == item.necessaryItem && x.count >= item.neededAmount);
             if (rez1 == null) return false;
+        }
+        foreach (AbstractItem tool in requiredTools)
+        {
+            var rez2 = sourceItems.Find(y => y.currentItem == tool);
+            if (rez2 == null) return false;
         }
 
         return true;

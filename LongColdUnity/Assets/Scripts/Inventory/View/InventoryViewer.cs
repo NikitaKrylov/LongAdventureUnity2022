@@ -12,6 +12,7 @@ public class InventoryViewer : MonoBehaviour, IDropHandler
     public Inventory inventory;
 
     [SerializeField] private Text inventoryWeight;
+    [SerializeField] private Text containerName;
     public List<InventoryViewCell> viewItems = new List<InventoryViewCell>();
     [Tooltip("Объект ячейки с предметом")] public GameObject gameObjectShow;
     [Tooltip("Объект с компонентом сетки")] public GameObject InventoryMainObject;
@@ -39,6 +40,10 @@ public class InventoryViewer : MonoBehaviour, IDropHandler
     public void SetInventory(Inventory inv)
     {
         inventory = inv;
+    }
+    public void SetContainerName(string name)
+    {
+        containerName.text = name;
     }
 
     private InventoryViewCell UpdateAndGetItem(Item item)

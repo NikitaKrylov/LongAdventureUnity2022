@@ -65,9 +65,9 @@ public class MeleeWeaponState : WeaponState
 
         foreach (RaycastHit2D hit in hits)
         {
-            var cr = hit.transform.gameObject.GetComponent<Creature>();
+            var cr = hit.transform.gameObject.GetComponent<IMob>();
 
-            if (cr != null) cr.Damage(equipmentSet.weaponSlot.CountDamage() * damageWeight);
+            if (cr != null) cr.TakeDamage(equipmentSet.weaponSlot.CountDamage() * damageWeight);
         }
         
     }

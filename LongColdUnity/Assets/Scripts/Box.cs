@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
+    [SerializeField] private new string name = "Контейнер";
     [SerializeField] private List<Item> items = new List<Item>();
     [SerializeField] private float maxContentWeight;
 
@@ -26,6 +27,7 @@ public class Box : MonoBehaviour
 
         InventoryViewer invV = uiManager.containerViewer;
         invV.SetInventory(inventory);
+        invV.SetContainerName(name);
         invV.gameObject.SetActive(true);
     }
 

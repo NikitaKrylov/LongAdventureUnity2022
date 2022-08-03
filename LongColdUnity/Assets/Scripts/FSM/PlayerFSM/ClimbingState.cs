@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class ClimbingState : IState
 {
+    public ClimbingState(FSM fsm)
+    {
+        this.fsm = fsm;
+    }
+
+    private FSM fsm;
     private GameObject gameObject;
     private Animator animator;
     private Rigidbody2D rb;
@@ -13,7 +19,7 @@ public class ClimbingState : IState
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            return new StandingState();
+            return new StandingState(fsm);
         }
         return null;
     }

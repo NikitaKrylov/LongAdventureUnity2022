@@ -9,7 +9,7 @@ using UnityEngine.EventSystems;
 public class MainItemObject: MonoBehaviour, IPointerClickHandler,  IPointerExitHandler
 {
     public AbstractItem objectModel;
-    protected Item itemObject;
+    public Item itemObject = null;
     protected SpriteRenderer spriteRenderer;
     protected BoxCollider2D boxCollider;
 
@@ -28,6 +28,12 @@ public class MainItemObject: MonoBehaviour, IPointerClickHandler,  IPointerExitH
         transform.localScale = objectModel.scale;
         boxCollider.size = spriteRenderer.sprite.bounds.size;
         gameObject.name = objectModel.name;
+
+        if (itemObject == null || itemObject?.currentItem == null)
+        {
+            itemObject = objectModel.CreateItem(1);
+        }
+        
     }
 
 
@@ -63,8 +69,8 @@ public class MainItemObject: MonoBehaviour, IPointerClickHandler,  IPointerExitH
     {
         Inventory inv = Player.GetInstance().inventory;
         GameObject.FindGameObjectWithTag("Player")?.GetComponent<Animator>().SetTrigger("Take");
-
-        Item item = new Item(objectModel, 1, inv);
+        inv.AddItem(itemObject);
+        //Item item = new Item(objectModel, 1, inv);
         Tooltip.Hide();
         Destroy(gameObject);
     }

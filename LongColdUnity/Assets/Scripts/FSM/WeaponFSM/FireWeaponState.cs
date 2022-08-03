@@ -53,9 +53,18 @@ public class FireWeaponState : WeaponState
     public override void Update()
     {
         firingFightSystem.UpdateSystem();
-        if (Input.GetMouseButton(1) && Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButton(1))
         {
-            firingFightSystem.Play();
+            firingFightSystem.ShowAimPoint();
+            firingFightSystem.UpdateaimPointPos(m_Camera.ScreenToWorldPoint(Input.mousePosition));
+            if (Input.GetMouseButtonDown(0))
+            {
+                firingFightSystem.Play();
+            }
+        }
+        else
+        {
+            firingFightSystem.HideAimPoint();
         }
     }
 
@@ -71,9 +80,9 @@ public class FireWeaponState : WeaponState
 
         foreach (Collider2D collider in colliders)
         {
-            var cr = collider.transform.gameObject.GetComponent<Creature>();
+            var cr = collider.transform.gameObject.GetComponent<IMob>();
 
-            if (cr != null) cr.Damage(currentWeapon.CountDamage() * damageWeight);
+            if (cr != null) cr.TakeDamage(currentWeapon.CountDamage() * damageWeight);
         }
     }
 }

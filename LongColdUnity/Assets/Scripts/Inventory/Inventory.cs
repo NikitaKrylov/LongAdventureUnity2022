@@ -73,13 +73,11 @@ public class Inventory
             if (rezult.count == amount)
             {
                 items.Remove(item);
-                //OnRemoveItem?.Invoke(item);
                 CreateObject(item);
             }
             else if (rezult.count > amount)
             {
                 rezult.count -= amount;
-                //OnChangeItem?.Invoke(item);
                 CreateObject(item, amount);
             }
         }
@@ -89,12 +87,7 @@ public class Inventory
 
     public void RemoveItem(Item item)
     {
-        bool rezult = items.Remove(item);
-        if (rezult)
-        {
-            //OnRemoveItem?.Invoke(item);
-
-        }
+        items.Remove(item);
     }
 
     public void RemoveItem(Item item, int amount)
@@ -105,7 +98,6 @@ public class Inventory
             if (rezult.count > amount)
             {
                 rezult.count -= amount;
-                //OnChangeItem?.Invoke(rezult);
             }
             else if (rezult.count == amount)
             {
@@ -133,10 +125,12 @@ public class Inventory
         item.Container = null;
         for (int i = 0; i < (amount ?? item.count); i++)
         { 
-            item.currentItem.CreateObject(new Vector3(
-                player.transform.position.x,
-                player.transform.position.y + player.GetComponent<CapsuleCollider2D>().size.y * 3,
-                player.transform.position.z));
+            item.currentItem.CreateObject(
+                item
+                ,new Vector3(
+                    player.transform.position.x,
+                    player.transform.position.y + player.GetComponent<CapsuleCollider2D>().size.y * 3,
+                    player.transform.position.z));
         }
     }
 
@@ -153,6 +147,7 @@ public class Item
     public Inventory Container  = null;
     public readonly bool hasDurabilityPoints;
     public float durabilityPoints { get; private set; }
+    private float durabilityStep = 1;
 
     public Item(AbstractItem item, int count, Inventory container, bool hasDurabilityPoints = false, float durabilityPoints = 0)
     {
@@ -182,6 +177,10 @@ public class Item
     public void PopAll()
     {
         Container?.PopItem(this);
+    }
+    public void ChangeDurability(float mulVal = 1)
+    {
+        durabilityPoints += durabilityStep * mulVal;
     }
 
 

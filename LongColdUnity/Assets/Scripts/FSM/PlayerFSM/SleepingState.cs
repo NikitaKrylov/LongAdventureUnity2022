@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class SleepingState : IState
 {
+    public SleepingState(FSM fsm)
+    {
+        this.fsm = fsm;
+    }
+
+    private FSM fsm;
     private bool canSkip = true;
     private GameObject gameObject;
     private Animator animator;
@@ -12,7 +18,7 @@ public class SleepingState : IState
         if (!canSkip) return null;
         if (Input.GetKeyDown(KeyCode.Escape) || Input.GetKeyDown(KeyCode.U))
         {
-            return new StandingState();
+            return new StandingState(fsm);
         }
         return null;
     }

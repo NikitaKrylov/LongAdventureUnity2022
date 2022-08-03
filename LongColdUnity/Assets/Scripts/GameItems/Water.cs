@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Food/Water")]
 public class Water : Food
 {
+    [Space]
+    [Header("Food properties")]
     public float waterValue;
     public override void Use() 
     {

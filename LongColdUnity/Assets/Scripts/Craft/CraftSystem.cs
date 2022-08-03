@@ -39,8 +39,6 @@ public class CraftSystem : MonoBehaviour
 
             recipeObject.GetComponentInChildren<Button>().onClick.AddListener(delegate{
                 craftRecipeStatView.Show(craftRecipe);
-                //if (craftRecipeStatView.IsActive) craftRecipeStatView.Close();
-                //else craftRecipeStatView.Show(craftRecipe);
             });
             craftItemPanel.SetData(craftRecipe);
             _craftItemPanels.Add(craftItemPanel);

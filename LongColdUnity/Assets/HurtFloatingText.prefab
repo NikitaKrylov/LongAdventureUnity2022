@@ -189,7 +189,7 @@ MonoBehaviour:
   destroyTime: 0.5
   offset: {x: 0, y: 0.31, z: 0}
   randomaizeTextSize: 1.5
-  randomaizeIntensity: {x: 0.85, y: 0.2, z: 0}
+  randomaizeIntensity: {x: 0.7, y: 0.2, z: 0}
 --- !u!95 &6455000294386087272
 Animator:
   serializedVersion: 4

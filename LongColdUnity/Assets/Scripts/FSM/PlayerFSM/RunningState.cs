@@ -4,7 +4,12 @@ using UnityEngine;
 
 public class RunningState : IState
 {
+    public RunningState(FSM fsm)
+    {
+        this.fsm = fsm;
+    }
 
+    private FSM fsm;
     private Vector2 _direction = Vector2.zero;
     private Rigidbody2D _rb;
     private Animator animator;
@@ -14,11 +19,11 @@ public class RunningState : IState
 
     public IState handleInput(GameObject obj)
     {
-        if (Mathf.Abs(Input.GetAxis("Horizontal")) > .3 && !Input.GetKey(KeyCode.LeftControl)) return new WalkingState();
+        if (Mathf.Abs(Input.GetAxis("Horizontal")) > .3 && !Input.GetKey(KeyCode.LeftControl)) return new WalkingState(fsm);
 
-        else if (Mathf.Abs(Input.GetAxis("Horizontal")) < .3) return new StandingState();
+        else if (Mathf.Abs(Input.GetAxis("Horizontal")) < .3) return new StandingState(fsm);
 
-        else if (FallingState.isFalling(obj)) return new FallingState();
+        else if (FallingState.isFalling(obj)) return new FallingState(fsm);
 
 
         return null;

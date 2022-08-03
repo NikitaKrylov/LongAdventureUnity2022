@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "ScriptableObjects", menuName = "ScriptableObjects/Food/ComboFood")]
 public class ComboFood : Food
 {
+    [Space]
+    [Header("Food properties")]
     public float waterValue;
     public float foodValue;
 

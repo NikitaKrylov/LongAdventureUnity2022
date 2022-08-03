@@ -13,21 +13,32 @@ public enum ItemCategory
 
 public abstract class AbstractItem : ScriptableObject
 {
+    
     public int id => GetInstanceID();
+
+    [Header("Item properties")]
     public new string name;
     public string description;
-    public Sprite image;
-    public Vector3 scale;
     public ItemCategory category;
-    public GameObject prefab;
-    public AudioClip dropSound;
-    public AudioClip pickUpSound;
     public float weight;
     public bool craftable;
     public bool unique;
 
+    [Space]
 
-    public virtual GameObject CreateObject(Vector3 position, Vector3? rotation = null, Vector3? force = null)
+    [Header("GameObject properties")]
+    public Sprite image;
+    public Vector3 scale;
+    public GameObject prefab;
+
+    [Space]
+
+    [Header("Audio")]
+    public AudioClip dropSound;
+    public AudioClip pickUpSound;
+
+
+    public virtual GameObject CreateObject(Item existedItem ,Vector3 position, Vector3? rotation = null, Vector3? force = null)
     {
         GameObject obj = Instantiate(prefab);
         obj.transform.position = position;
@@ -35,7 +46,12 @@ public abstract class AbstractItem : ScriptableObject
         if (rotation.HasValue) obj.transform.rotation = Quaternion.Euler(rotation.Value);
         if (force.HasValue) obj.GetComponent<Rigidbody2D>().AddForce(force.Value);
 
-        obj.GetComponent<MainItemObject>().objectModel = this;
+        MainItemObject mio = obj.GetComponent<MainItemObject>();
+
+        mio.objectModel = this;
+        if (existedItem != null) mio.itemObject = existedItem;
+        else mio.itemObject = this.CreateItem(1);
+
         return obj;
     }
     public virtual Item CreateItem(int amount)

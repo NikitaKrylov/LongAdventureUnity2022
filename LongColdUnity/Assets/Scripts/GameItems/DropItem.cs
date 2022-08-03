@@ -43,7 +43,7 @@ public class DropItem
 
         for (int i = 0; i < UnityEngine.Random.Range(minDropAmount, maxDropAmount); i++)
         {
-            item.CreateObject(position, rotation, force);
+            item.CreateObject(null, position, rotation, force);
         }
         
     }

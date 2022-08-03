@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class WalkingState : IState
 {
+    public WalkingState(FSM fsm)
+    {
+        this.fsm = fsm;
+    }
+
+    private FSM fsm;
     private Vector2 _direction = Vector2.zero;
     private Rigidbody2D _rb;
     private Animator animator;
@@ -12,13 +18,13 @@ public class WalkingState : IState
 
     public IState handleInput(GameObject obj)
     {
-        if (Mathf.Abs(Input.GetAxis("Horizontal")) < .3) return new StandingState();
+        if (Mathf.Abs(Input.GetAxis("Horizontal")) < .3) return new StandingState(fsm);
 
-        else if (Mathf.Abs(Input.GetAxis("Horizontal")) > .3 && Input.GetKey(KeyCode.LeftControl)) return new RunningState();
+        else if (Mathf.Abs(Input.GetAxis("Horizontal")) > .3 && Input.GetKey(KeyCode.LeftControl)) return new RunningState(fsm);
 
-        else if (Input.GetKey(KeyCode.LeftShift)) return new ShiftingState();
+        else if (Input.GetKey(KeyCode.LeftShift)) return new ShiftingState(fsm);
 
-        else if (FallingState.isFalling(obj)) return new FallingState();
+        else if (FallingState.isFalling(obj)) return new FallingState(fsm);
 
 
         return null;

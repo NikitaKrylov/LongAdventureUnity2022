@@ -4,12 +4,18 @@ using UnityEngine;
 
 public class FallingState : IState
 {
-    public static float fallingDistance = 3f;
+    public FallingState(FSM fsm)
+    {
+        this.fsm = fsm;
+    }
 
+    private FSM fsm;
     private const float fallingXSpeed = 1.2f;
     private GameObject gameObject;
     private Animator animator;
     private static Collider2D collider;
+
+    public static float fallingDistance = 3f;
 
     public static bool isFalling(GameObject obj)
     {
@@ -33,7 +39,7 @@ public class FallingState : IState
     {
         if (!isFalling(obj))
         {
-            return new StandingState();
+            return new StandingState(fsm);
         }
         return null;
     }

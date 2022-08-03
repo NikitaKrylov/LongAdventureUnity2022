@@ -30,7 +30,7 @@ public class Ladder : MonoBehaviour
 
                 if (targetObject.PlayerFSM.currentState is ClimbingState) return;
 
-                targetObject.PlayerFSM.SetState(new ClimbingState());
+                targetObject.PlayerFSM.SetState(new ClimbingState(targetObject.PlayerFSM));
                 ((ClimbingState)targetObject.PlayerFSM.currentState).SetLadderType(this);
             }
         }
@@ -41,7 +41,7 @@ public class Ladder : MonoBehaviour
         if (fsm.currentState is ClimbingState) return;
         else
         {
-            fsm.SetState(new ClimbingState());
+            fsm.SetState(new ClimbingState(targetObject.PlayerFSM));
         }
     }
 
@@ -72,7 +72,7 @@ public class Ladder : MonoBehaviour
             {
                 if (targetObject.PlayerFSM.currentState is ClimbingState)
                 {
-                    targetObject.PlayerFSM.SetState(new StandingState());
+                    targetObject.PlayerFSM.SetState(new StandingState(targetObject.PlayerFSM));
                 }
 
             }
