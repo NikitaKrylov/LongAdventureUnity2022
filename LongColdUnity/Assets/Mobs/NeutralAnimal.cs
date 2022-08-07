@@ -1,16 +1,13 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-[RequireComponent(typeof(Animator), typeof(Rigidbody2D), typeof(SpriteRenderer))]
-public abstract class PeacefulAnimal : MonoBehaviour, IPeacefulMob
+public abstract class NeutralAnimal : MonoBehaviour, INeutralMob
 {
     [Header("Speed")]
-    [SerializeField] protected float defaultSpeed;
-    [SerializeField] protected float maxSpeed;
-
+    [SerializeField] protected float defaultSpeed = 1.6f;
+    [SerializeField] protected float maxSpeed = 7;
     [Space]
 
     [SerializeField] protected float maxHealth;
@@ -21,32 +18,24 @@ public abstract class PeacefulAnimal : MonoBehaviour, IPeacefulMob
     protected float health;
     private Animator _animotor;
     private Rigidbody2D _rb;
-
     public Animator animator { get { return _animotor; } }
     public Rigidbody2D rb { get { return _rb; } }
 
     protected FSM fsm;
 
 
-    protected virtual void Start()
-    {
-        health = maxHealth;
-        _rb = GetComponent<Rigidbody2D>();
-        _animotor = GetComponent<Animator>();
-        fsm = new FSM(gameObject, GetInitState());
-    }
-
-
-    protected void Update()
-    {
-        fsm.Update();
-    }
     public void Move(Vector2 speed, Vector2 direction)
     {
         rb.velocity = new Vector2(
             direction.x * speed.x,
             direction.y * speed.y + rb.velocity.y
             );
+    }
+
+    public void ShowFloatingtext(string text)
+    {
+        GameObject obj = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity, transform.parent);
+        obj.GetComponent<TextMeshPro>().text = text;
     }
 
     public void TakeDamage(float value)
@@ -61,16 +50,13 @@ public abstract class PeacefulAnimal : MonoBehaviour, IPeacefulMob
         }
     }
 
-    public float GetDefaultSpeed() =>  defaultSpeed;
-    public float GetMaxSpeed() => maxSpeed; 
-    public abstract void DropLoot();
-    public abstract void Kill();
+    public abstract void ChangeInimicalStatus();
     public abstract IEnumerator TakeDamageAnimation();
     public abstract IState GetInitState();
+    public abstract void Damage();
+    public abstract void DropLoot();
+    public abstract void Kill();
+    public float GetDefaultSpeed() => defaultSpeed;
+    public float GetMaxSpeed() => maxSpeed;
 
-    public void ShowFloatingtext(string text)
-    {
-        GameObject obj = Instantiate(floatingTextPrefab, transform.position, Quaternion.identity, transform.parent);
-        obj.GetComponent<TextMeshPro>().text = text;
-    }
 }

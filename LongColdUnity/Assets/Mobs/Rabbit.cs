@@ -6,7 +6,7 @@ public class Rabbit : PeacefulAnimal
 {
     [SerializeField] private List<DropItem> dropItems = new List<DropItem>();
     private SpriteRenderer spriteRenderer;
-    private const float damageAnimationDuration = .1f;
+    private const float damageAnimationDuration = .3f;
 
     protected override void Start()
     {

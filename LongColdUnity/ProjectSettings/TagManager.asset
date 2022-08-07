@@ -7,8 +7,10 @@ TagManager:
   - Inventory
   - Ground
   - Trigger
-  - Mob
   - Creature
+  - EnemyMob
+  - PeacefulMob
+  - NeutralMob
   layers:
   - Default
   - TransparentFX

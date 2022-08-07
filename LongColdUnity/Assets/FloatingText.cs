@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-[RequireComponent(typeof(TextMeshPro))]
+[RequireComponent(typeof(TextMeshPro), typeof(Animator))]
 public class FloatingText : MonoBehaviour
 {
     [SerializeField] private float destroyTime = .3f;
