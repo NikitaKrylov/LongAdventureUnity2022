@@ -1,15 +1,14 @@
 using UnityEngine;
 
-public class StandingState : IState
+public class StandingState : IState<Player>
 {
-    public StandingState(FSM fsm)
+    public StandingState(StateMachine<Player> fsm)
     {
         this.fsm = fsm;
     }
 
-    private FSM fsm;
-    private FSM weaponFSM;
-    public IState handleInput(GameObject obj)
+    private StateMachine<Player> fsm;
+    public IState<Player> handleInput(Player player)
     {
         if (Mathf.Abs(Input.GetAxis("Horizontal")) > .3)
         {
@@ -27,7 +26,7 @@ public class StandingState : IState
         {
             return new ClimbingState(fsm);
         }
-        else if (FallingState.isFalling(obj))
+        else if (FallingState.isFalling(player.gameObject))
         {
             return new FallingState(fsm);
         }
@@ -35,10 +34,9 @@ public class StandingState : IState
         return null;
     }
 
-    public void OnEnter(GameObject gameObject)
-    {
-        weaponFSM = gameObject.GetComponent<Player>().WeaponFSM;
-    }
     public void Update(){}
     public void OnExit(){}
+
+    public void OnEnter(Player player) { }
+    
 }

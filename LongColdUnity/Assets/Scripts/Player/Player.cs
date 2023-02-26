@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour, IFightable
 {
     [SerializeField] private float walkingSpeed = 4.3f;
     [SerializeField] private float runningSpeed = 6.5f;
@@ -11,13 +11,16 @@ public class Player : MonoBehaviour
     [SerializeField] private Transform head;
     [SerializeField] private Transform hand;
 
-    public FSM PlayerFSM;
-    public FSM WeaponFSM;
+    public StateMachine<Player> playerStateMachine;
     public Inventory inventory;
     public EquipmentSet EquipmentSet;
     private ConditionSet conditionSet;
 
     private static Player playerInstance;
+
+    public float damageValue => throw new System.NotImplementedException();
+
+    public float Health { get => throw new System.NotImplementedException(); set => throw new System.NotImplementedException(); }
 
     public static Player GetInstance()
     {
@@ -29,22 +32,16 @@ public class Player : MonoBehaviour
     {
         playerInstance = this;
         inventory = new Inventory();
-        EquipmentSet = new EquipmentSet(this);
-        WeaponFSM = new FSM(gameObject, WeaponState.GetStateByWeaponType(EquipmentSet.weaponSlot));
-        PlayerFSM = new FSM(gameObject, new StandingState(PlayerFSM));
+        EquipmentSet = new EquipmentSet();
+        playerStateMachine = new StateMachine<Player>(this, new StandingState(playerStateMachine));
         conditionSet = gameObject.GetComponent<ConditionSet>();
     }
 
     private void Update()
     {
-        PlayerFSM.Update();
-        WeaponFSM.Update();
+        playerStateMachine.Update();
     }
-    public void Hit(float damageWeight = 1)
-    {
-        WeaponState weaponState = (WeaponState)WeaponFSM.currentState;
-        weaponState.UseWeapon(gameObject, damageWeight);
-    }
+    
     public void TakeDamage(float value)
     {
         var obj = Instantiate(floatingtextPrefab, transform.position, Quaternion.identity, transform.parent);
@@ -62,4 +59,18 @@ public class Player : MonoBehaviour
     public float GetWalkingSpeed() => walkingSpeed;
     public float GetRunningSpeed() => runningSpeed;
 
+    public void Attack(IFightable entity)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Damage(float value)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    public void Kill()
+    {
+        throw new System.NotImplementedException();
+    }
 }

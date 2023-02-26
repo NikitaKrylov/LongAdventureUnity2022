@@ -2,20 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ClimbingState : IState
+public class ClimbingState : IState<Player>
 {
-    public ClimbingState(FSM fsm)
+    public ClimbingState(StateMachine<Player> fsm)
     {
         this.fsm = fsm;
     }
 
-    private FSM fsm;
+    private StateMachine<Player> fsm;
     private GameObject gameObject;
     private Animator animator;
     private Rigidbody2D rb;
     private Ladder ladder;
 
-    public IState handleInput(GameObject obj)
+    public IState<Player> handleInput(Player player)
     {
         if (Input.GetKeyDown(KeyCode.Q))
         {
@@ -24,9 +24,9 @@ public class ClimbingState : IState
         return null;
     }
 
-    public void OnEnter(GameObject obj)
+    public void OnEnter(Player player)
     {
-        gameObject = obj;
+        gameObject = player.gameObject;
         animator = gameObject.GetComponent<Animator>();
         rb = gameObject.GetComponent<Rigidbody2D>();
 

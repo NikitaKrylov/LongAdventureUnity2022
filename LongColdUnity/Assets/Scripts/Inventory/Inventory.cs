@@ -15,11 +15,6 @@ public class Inventory
     public int Count { get { return items.Count; } }
     public float maxContentWeight;
 
-    private void Start()
-    {
-        //items.ForEach(item => OnAddItem.Invoke(item));
-    }
-
     public float GetWeight()
     {
         float weight = 0f;
@@ -38,12 +33,10 @@ public class Inventory
             Item currentItem = FindItemById(item.currentItem.GetInstanceID());
             currentItem.count += item.count;
             currentItem.Container = this;
-            //OnAddItem?.Invoke(currentItem);
             return;
         }
         item.Container = this;
         items.Add(item);
-        //OnAddItem?.Invoke(item);
     }
 
     public void AddItems(List<Item> items)
@@ -60,7 +53,6 @@ public class Inventory
         bool rezult = items.Remove(item);
         if (rezult)
         {
-            //OnRemoveItem?.Invoke(item);
             CreateObject(item);
         }
     }

@@ -8,14 +8,6 @@ public class EquipmentSet
     public Weapon weaponSlot { get; private set; } = null;
     public Equipment firstEquipmentSlot { get; set; } = null;
     public Equipment secindEquipmentSlot { get; set; } = null;
-    private Player player;
-    private FSM weaponFSM;
-
-    public EquipmentSet(Player player)
-    {
-        this.player = player;
-        weaponFSM = player.WeaponFSM;
-    }
 
     public void SetWeapon(Weapon weapon)
     {
@@ -31,7 +23,7 @@ public class EquipmentSet
         }
         else if (weapon is FireWeapon)
         {
-            //throw new Exception("FireWeaponState еще не создан, чтобы представлять состояние FireWeapon");
+            //throw new Exception("FireWeaponState пїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ FireWeapon");
         }
     }
 }

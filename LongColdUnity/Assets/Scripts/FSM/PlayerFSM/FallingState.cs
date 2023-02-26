@@ -2,14 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FallingState : IState
+public class FallingState : IState<Player>
 {
-    public FallingState(FSM fsm)
+    public FallingState(StateMachine<Player> fsm)
     {
         this.fsm = fsm;
     }
 
-    private FSM fsm;
+    private StateMachine<Player> fsm;
     private const float fallingXSpeed = 1.2f;
     private GameObject gameObject;
     private Animator animator;
@@ -35,19 +35,19 @@ public class FallingState : IState
 
         return true;
     }
-    public IState handleInput(GameObject obj)
+    public IState<Player> handleInput(Player player)
     {
-        if (!isFalling(obj))
+        if (!isFalling(player.gameObject))
         {
             return new StandingState(fsm);
         }
         return null;
     }
 
-    public void OnEnter(GameObject obj)
+    public void OnEnter(Player player)
     {
 
-        gameObject = obj;
+        gameObject = player.gameObject;
         animator = gameObject.GetComponent<Animator>();
         animator.SetBool("isFalling", true);
     }

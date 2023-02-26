@@ -2,40 +2,38 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RunningState : IState
+public class RunningState : IState<Player>
 {
-    public RunningState(FSM fsm)
+    public RunningState(StateMachine<Player> fsm)
     {
         this.fsm = fsm;
     }
 
-    private FSM fsm;
+    private StateMachine<Player> fsm;
     private Vector2 _direction = Vector2.zero;
     private Rigidbody2D _rb;
     private Animator animator;
     private GameObject gameObject;
-    private FSM weaponFSM;
     private Player player;
 
-    public IState handleInput(GameObject obj)
+    public IState<Player> handleInput(Player player)
     {
         if (Mathf.Abs(Input.GetAxis("Horizontal")) > .3 && !Input.GetKey(KeyCode.LeftControl)) return new WalkingState(fsm);
 
         else if (Mathf.Abs(Input.GetAxis("Horizontal")) < .3) return new StandingState(fsm);
 
-        else if (FallingState.isFalling(obj)) return new FallingState(fsm);
+        else if (FallingState.isFalling(player.gameObject)) return new FallingState(fsm);
 
 
         return null;
     }
 
-    public void OnEnter(GameObject obj)
+    public void OnEnter(Player player)
     {
-        gameObject = obj;
+        gameObject = player.gameObject;
         player = gameObject.GetComponent<Player>();
         _rb = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
-        weaponFSM = obj.GetComponent<Player>().WeaponFSM;
         animator.SetBool("isRunning", true);
     }
 

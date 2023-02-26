@@ -1,22 +1,21 @@
 using UnityEngine;
 
-public class WalkingState : IState
+public class WalkingState : IState<Player>
 {
-    public WalkingState(FSM fsm)
+    public WalkingState(StateMachine<Player> fsm)
     {
         this.fsm = fsm;
     }
 
-    private FSM fsm;
+    private StateMachine<Player> fsm;
     private Vector2 _direction = Vector2.zero;
     private Rigidbody2D _rb;
     private Animator animator;
     private GameObject gameObject;
-    private FSM weaponFSM;
     private Player player;
 
 
-    public IState handleInput(GameObject obj)
+    public IState<Player> handleInput(Player player)
     {
         if (Mathf.Abs(Input.GetAxis("Horizontal")) < .3) return new StandingState(fsm);
 
@@ -24,19 +23,18 @@ public class WalkingState : IState
 
         else if (Input.GetKey(KeyCode.LeftShift)) return new ShiftingState(fsm);
 
-        else if (FallingState.isFalling(obj)) return new FallingState(fsm);
+        else if (FallingState.isFalling(player.gameObject)) return new FallingState(fsm);
 
 
         return null;
     }
 
-    public void OnEnter(GameObject obj)
+    public void OnEnter(Player palyer)
     {
-        gameObject = obj;
+        gameObject = palyer.gameObject;
         player = gameObject.GetComponent<Player>();
         _rb = gameObject.GetComponent<Rigidbody2D>();
         animator = gameObject.GetComponent<Animator>();
-        weaponFSM = obj.GetComponent<Player>().WeaponFSM;
         animator.SetBool("isRunning", true);
     }
 

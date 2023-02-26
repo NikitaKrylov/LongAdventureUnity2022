@@ -2,18 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ShiftingState : IState
+public class ShiftingState : IState<Player>
 {
-    public ShiftingState(FSM fsm)
+    public ShiftingState(StateMachine<Player> fsm)
     {
         this.fsm = fsm;
     }
 
-    private FSM fsm;
+    private StateMachine<Player> fsm;
     private Animator animator;
     private GameObject gameObject;
 
-    public IState handleInput(GameObject obj)
+    public IState<Player> handleInput(Player player)
     {
         if (!Input.GetKey(KeyCode.LeftShift))
         {
@@ -22,9 +22,9 @@ public class ShiftingState : IState
         return null;
     }
 
-    public void OnEnter(GameObject obj)
+    public void OnEnter(Player player)
     {
-        gameObject = obj;
+        gameObject = player.gameObject;
         animator = gameObject.GetComponent<Animator>();
         animator.SetBool("isShifting", true);
     }

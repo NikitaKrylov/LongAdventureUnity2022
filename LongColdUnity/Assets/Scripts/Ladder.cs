@@ -28,20 +28,20 @@ public class Ladder : MonoBehaviour
             if (Mathf.Abs(Input.GetAxis("Vertical")) > .2)
             {
 
-                if (targetObject.PlayerFSM.currentState is ClimbingState) return;
+                if (targetObject.playerStateMachine.currentState is ClimbingState) return;
 
-                targetObject.PlayerFSM.SetState(new ClimbingState(targetObject.PlayerFSM));
-                ((ClimbingState)targetObject.PlayerFSM.currentState).SetLadderType(this);
+                targetObject.playerStateMachine.SetState(new ClimbingState(targetObject.playerStateMachine));
+                ((ClimbingState)targetObject.playerStateMachine.currentState).SetLadderType(this);
             }
         }
     }
 
-    private void SetClimbingState(FSM fsm)
+    private void SetClimbingState(StateMachine<Player> fsm)
     {
         if (fsm.currentState is ClimbingState) return;
         else
         {
-            fsm.SetState(new ClimbingState(targetObject.PlayerFSM));
+            fsm.SetState(new ClimbingState(targetObject.playerStateMachine));
         }
     }
 
@@ -70,9 +70,9 @@ public class Ladder : MonoBehaviour
 
             if (targetObjectInCollider)
             {
-                if (targetObject.PlayerFSM.currentState is ClimbingState)
+                if (targetObject.playerStateMachine.currentState is ClimbingState)
                 {
-                    targetObject.PlayerFSM.SetState(new StandingState(targetObject.PlayerFSM));
+                    targetObject.playerStateMachine.SetState(new StandingState(targetObject.playerStateMachine));
                 }
 
             }

@@ -1,18 +1,10 @@
 using UnityEngine;
 
-public interface IState 
+public interface IState<TEntity> where TEntity : MonoBehaviour
 {
-    /// <summary>
-    /// Менеджер переходов
-    /// </summary>
-    public abstract IState handleInput(GameObject obj);
-    
-    public abstract void Update();
 
-    /// <summary>
-    /// Действие при старте состояния
-    /// </summary>
-    public abstract void OnEnter(GameObject obj);
-    
+    public abstract IState<TEntity> handleInput(TEntity entity);
+    public abstract void Update();
+    public abstract void OnEnter(TEntity entity); 
     public abstract void OnExit();
 }
